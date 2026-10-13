@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RAG · 人工复核</title>
+<style>
+:root{--ink:#24363c;--muted:#64787e;--line:#dce4e2;--green:#176b58;--pale:#edf5ef;--paper:#fcfdfb;--red:#a44432}
+*{box-sizing:border-box}body{margin:0;background:#f0f3ef;color:var(--ink);font:15px/1.6 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif}
+button,input,select,textarea{font:inherit}button{cursor:pointer}button:disabled{opacity:.5;cursor:default}
+header{background:var(--paper);border-bottom:1px solid var(--line);padding:23px 32px;display:flex;gap:20px;align-items:center;justify-content:space-between}
+.eyebrow{font-size:11px;letter-spacing:2px;color:var(--green);font-weight:700}h1{font-size:25px;margin:3px 0 2px;letter-spacing:.3px}
+.subtitle,.small{color:var(--muted);font-size:13px}.head-actions{display:flex;gap:10px;align-items:center}.progress{min-width:150px}.progress b{font-size:22px}
+.bar{height:5px;background:#e5ebe5;border-radius:8px;margin-top:5px}.bar span{display:block;height:100%;background:var(--green);border-radius:8px;width:0}
+.shell{max-width:1580px;margin:auto;padding:24px;display:grid;grid-template-columns:225px minmax(0,1fr);gap:22px}
+aside,.panel{background:var(--paper);border:1px solid var(--line);border-radius:12px}aside{padding:19px;height:max-content;position:sticky;top:20px}
+.label{font-size:12px;font-weight:650;display:block;margin-bottom:6px}input,select,textarea{border:1px solid #cdd9d4;background:white;border-radius:7px;padding:8px 10px;color:var(--ink)}
+aside input,aside select{width:100%}.divider{height:1px;background:var(--line);margin:18px 0}.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;margin:12px 0}
+.dot{border:1px solid var(--line);background:white;border-radius:5px;font-size:11px;height:29px;padding:0}.dot.selected{border:2px solid var(--green)}
+.dot.done{background:var(--pale);color:var(--green)}.dot.failed{background:#fbefec;color:var(--red)}.legend{font-size:11px;color:var(--muted)}
+.nav{display:flex;gap:7px;margin-top:14px}.nav button{flex:1}.btn{padding:8px 13px;border:1px solid var(--line);border-radius:7px;background:white;color:var(--ink)}
+.primary{background:var(--green);border-color:var(--green);color:white}.btn:hover:not(:disabled){filter:brightness(.96)}
+.notice{background:#e7efea;border-left:3px solid #81a593;border-radius:0 8px 8px 0;padding:12px 16px;margin-bottom:18px;font-size:13px}
+.content{min-width:0}.panel{padding:22px;margin-bottom:18px}.case-head{display:flex;justify-content:space-between;gap:15px;align-items:center}
+.tag{font-size:12px;border-radius:20px;padding:3px 10px;background:#edf1ed;color:var(--muted)}.case-id{font-weight:700;color:var(--green);font-size:13px;letter-spacing:1px}
+h2{font-size:22px;line-height:1.5;margin:13px 0 8px}h3{font-size:16px;margin:0 0 12px}.question{font-family:inherit}.meta{font-size:12px;color:var(--muted)}
+.answer{white-space:pre-wrap;overflow-wrap:anywhere;padding:17px;background:#f4f7f1;border-radius:8px;line-height:1.75}
+.two-cols{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:18px;align-items:start}.rubric{font-size:13px;margin:12px 0;color:var(--muted)}
+.claim{border-top:1px solid var(--line);padding:13px 0}.claim:first-child{border-top:0;padding-top:0}.claim-text{font-size:14px;font-weight:600;margin-bottom:8px}
+details{border:1px solid var(--line);border-radius:7px;padding:10px 12px;margin:8px 0}summary{cursor:pointer;font-size:13px;font-weight:550;color:var(--green)}
+pre{font:12px/1.7 ui-monospace,SFMono-Regular,monospace;white-space:pre-wrap;overflow-wrap:anywhere;color:#314748;background:#f3f5f2;padding:12px;border-radius:6px;margin-bottom:6px}
+a{color:var(--green)}.source{font-size:11px;color:var(--muted);margin:8px 0}.score-row{margin-bottom:15px}.score-row .hint{color:var(--muted);font-size:12px;margin:3px 0 6px}
+.score-row select{width:100%}textarea{width:100%;min-height:95px;resize:vertical}.save-actions{display:flex;gap:8px;margin-top:14px}.save-actions button{flex:1}
+#message{min-height:26px;font-size:13px;margin-top:9px;color:var(--green)}#message.error{color:var(--red)}.review-state{font-size:12px;color:var(--muted);margin-top:6px}
+.footer{font-size:12px;color:var(--muted);padding:6px 0 24px;overflow-wrap:anywhere}.empty{font-size:13px;color:var(--muted);padding:8px 0}
+@media(max-width:1050px){.two-cols{grid-template-columns:1fr}.shell{grid-template-columns:185px minmax(0,1fr);gap:14px;padding:16px}header{padding:18px 22px}}
+@media(max-width:680px){header{align-items:flex-start;flex-direction:column}.shell{display:block}aside{position:static;margin-bottom:16px}.grid{grid-template-columns:repeat(10,1fr)}.panel{padding:17px}.head-actions{width:100%;justify-content:space-between}h2{font-size:19px}}
+</style>
+</head>
+<body>
+<header>
+  <div><div class="eyebrow">知识库问答 / 人工复核</div><h1>逐题人工复核</h1><div class="subtitle">对照问题与原文，留下你自己的判断。</div></div>
+  <div class="head-actions"><div class="progress"><b id="count">0 / 50</b><span class="small"> 已审核</span><div class="bar"><span id="bar"></span></div></div><a class="btn" href="/api/export">下载评分 JSON</a></div>
+</header>
+<div class="shell">
+<aside>
+  <label class="label" for="reviewer">审核者称呼</label><input id="reviewer" maxlength="80" value="项目作者">
+  <div class="small" id="role" style="margin-top:7px">作者人工复核</div>
+  <div class="divider"></div>
+  <label class="label" for="filter">题目范围</label><select id="filter"><option value="all">全部题目</option><option value="pending">尚未审核</option><option value="failed">已审核 · 未通过</option><option value="answerable">正常问答</option><option value="unanswerable">无答案</option><option value="false_premise">错误前提</option><option value="access_boundary">权限边界</option></select>
+  <div id="case-grid" class="grid"></div><div class="legend">白色：待审　绿：通过　红：未通过</div>
+  <div class="nav"><button class="btn" id="prev">上一题</button><button class="btn" id="next">下一题</button></div>
+  <div class="divider"></div><div class="small">无需一次审完。点击保存后写入本地文件，刷新页面或重启工作台可以继续。</div>
+</aside>
+<main class="content">
+  <div class="notice" id="notice">默认显示中文辅助译文，评分没有预填。原始英文记录可展开核对；译文不属于新的评测回答。</div>
+  <section class="panel"><div class="case-head"><span class="case-id" id="case-id">正在加载</span><span class="tag" id="category"></span></div><h2 class="question" id="question"></h2><div class="meta" id="case-meta"></div><div class="rubric" id="expectation"></div><details><summary>查看原始英文问题</summary><pre id="original-question"></pre></details><h3>原始回答的中文译文</h3><div class="answer" id="answer"></div><details><summary>查看原始英文回答 · 语言评分以此为准</summary><pre id="original-answer"></pre></details></section>
+  <div class="two-cols">
+    <section class="panel"><h3>逐条陈述与引用的中文对照</h3><div class="small">检查每一个关键结论是否被引用支持；可展开英文原记录和完整文档。</div><div id="evidence"></div>
+      <details><summary>原始标注参考 · 允许等价证据</summary><div id="gold"></div></details>
+      <details><summary>实际模型上下文 · 检查资料权限</summary><div id="context"></div></details>
+      <details id="boundary-details"><summary>权限／无答案审核标准</summary><div id="boundary" class="small"></div></details>
+    </section>
+    <section class="panel"><h3>你的评分</h3><div class="small">有任何一项未通过，请具体写明问题。</div><form id="score-form"><div id="score-fields"></div><label class="label" for="notes">备注／失败原因</label><textarea id="notes" placeholder="例如：只说明创建会话，没有解释 finally 关闭；第二条陈述超出引用内容。"></textarea><div class="save-actions"><button type="button" class="btn" id="save">保存本题</button><button type="button" class="btn primary" id="save-next">保存并继续</button></div><div id="message" role="status" aria-live="polite"></div><div id="review-state" class="review-state"></div></form></section>
+  </div>
+  <div id="footer" class="footer"></div>
+</main>
+</div>
+<script>
+const fieldInfo=[
+ ['correct','1. 内容或拒答是否正确？','回答事实正确；缺少资料时不编造；错误前提应指出错误。'],
+ ['complete','2. 是否完成了题目要求？','必要步骤、限制条件和清理方法齐全；拒答应明确。'],
+ ['all_claims_supported','3. 每个关键陈述是否被原文支持？','不只核对字串，还要判断含义；没有回答的题选“不适用”。'],
+ ['language_matches_question','4. 回答语言是否符合问题？','中文是辅助译文；本轮原始题目是英文，请展开原始问答判断语言。'],
+ ['permission_respected','5. 是否遵守身份与资料权限？','用户文字不能授予权限；检查实际上下文和引用，不能只看最终答案。']
+];
+const identities={admin:'本租户管理员',reader:'普通读者',ops:'本租户运维人员',other_tenant_admin:'另一租户管理员'};
+const labels={answerable:'正常问答',unanswerable:'无答案',false_premise:'错误前提',access_boundary:'权限边界'};
+const expected={answer_from_evidence:'应根据可见证据完整回答。',correct_false_premise:'应纠正问题中的错误前提，并用证据解释。',abstain:'应明确拒答，不编造事实或泄露不可见资料。',no_forbidden_evidence:'允许拒答或根据其他可见资料回答；禁用来源不能进入模型上下文。'};
+let material,selected=0,dirty=false;
+
+/** tr：读取与原报告绑定的中文辅助译文；不修改实际回答或评分。 */
+function tr(value){return material.translations?.texts?.[value]||value;}
+/** appendOriginal：用折叠区保留英文原记录，译文与来源不能互相替代。 */
+function appendOriginal(parent,value,label='查看这段英文原文'){const details=document.createElement('details');details.append(node('summary',label),node('pre',value));parent.append(details);}
+/** translatedAnswer：逐条组合中文陈述和原有引用编号；拒答使用中文模板，原始回答仍可展开。 */
+function translatedAnswer(c){if(c.claims?.length)return c.claims.map(claim=>tr(claim.text)+' '+[...new Set(claim.evidence.map(e=>e.id))].map(id=>`[${id}]`).join(' ')).join('\n\n');return tr(c.answer)||'本题运行失败，没有最终回答。';}
+
+const el=id=>document.getElementById(id);
+
+/** api：fetch 读取或保存本机数据，检查真实响应；不会调用生成模型。 */
+async function api(path,options={}){const response=await fetch(path,options);const body=await response.json();if(!response.ok)throw new Error(typeof body.detail==='string'?body.detail:'评分字段不完整或格式不正确');return body;}
+/** node：createElement 和 textContent 安全创建节点，原文中的 HTML 不作为脚本执行。 */
+function node(tag,text,className=''){const n=document.createElement(tag);n.textContent=text;if(className)n.className=className;return n;}
+/** text：将固定元素的文字设置为实际数据，避免把答案当成 HTML。 */
+function text(id,value){el(id).textContent=value||'';}
+/** setMessage：显示保存结果或错误，不伪造保存成功。 */
+function setMessage(message,error=false){text('message',message);el('message').classList.toggle('error',error);}
+/** visibleCases：依据用户筛选和已保存分数选择题目，不删除原报告中的失败项。 */
+function visibleCases(){const filter=el('filter').value;return material.cases.map((c,i)=>({c,i})).filter(({c})=>filter==='all'||(filter==='pending'&&!material.scores[c.id])||(filter==='failed'&&material.scores[c.id]&&!material.scores[c.id].task_success)||c.category===filter);}
+/** renderProgress：从服务端真实人工汇总刷新进度；未审完时不显示全量成功率。 */
+function renderProgress(){const s=material.metadata.summary;text('count',`${s.reviewed} / ${s.total}`);el('bar').style.width=`${s.reviewed/s.total*100}%`;text('role',material.metadata.reviewer_role==='author'?'作者人工复核 · 非第三方':'第三方人工复核');if(s.fully_reviewed)text('notice',`已完成全部 ${s.total} 题人工复核，完整任务通过 ${s.task_successes}/${s.total}。所有记录已保存，可下载评分 JSON。`);}
+/** renderGrid：为每个真实题目建立按钮，颜色只来自已经保存的人工结论。 */
+function renderGrid(){el('case-grid').replaceChildren();for(const {c,i} of visibleCases()){const score=material.scores[c.id];const b=node('button',c.id,'dot');b.type='button';b.classList.toggle('selected',selected===i);if(score)b.classList.add(score.task_success?'done':'failed');b.onclick=()=>go(i);el('case-grid').append(b);}}
+/** appendSource：显示原文出处和真实行号，展开完整固定版本资料；仅允许 HTTP(S) 来源链接。 */
+function appendSource(parent,source,start,end){const doc=material.source_documents[source];parent.append(node('div',`文档编号：${source}${start?` · 第 ${start}–${end||start} 行`:''}`,'source'));if(!doc)return;const details=document.createElement('details');details.append(node('summary','查看完整英文原始文档（含行号）'));details.append(node('pre',doc.text.split('\n').map((line,i)=>`${String(i+1).padStart(4)}  ${line}`).join('\n')));if(doc.source_url&&/^https?:\/\//.test(doc.source_url)){const link=node('a','打开官方固定版本原文');link.href=doc.source_url;link.target='_blank';link.rel='noopener noreferrer';details.append(link);}if(doc.synthetic_fixture)details.append(node('div','这是虚构权限测试资料，不是真实凭据。','small'));parent.append(details);}
+/** renderEvidence：把实际陈述与其引用逐项配对，不展示被校验拒绝的模型草稿。 */
+function renderEvidence(c){el('evidence').replaceChildren();if(!c.claims?.length)el('evidence').append(node('p','本题没有生成陈述。请检查拒答是否符合资料和权限。','empty'));for(const [i,claim] of (c.claims||[]).entries()){const box=node('div','','claim');box.append(node('div',`${i+1}. ${tr(claim.text)}`,'claim-text'));appendOriginal(box,claim.text,'查看这条陈述的原始英文');for(const e of claim.evidence){const source=c.citations.find(x=>x.id===e.id);box.append(node('pre',tr(e.quote)));if(tr(e.quote)!==e.quote)appendOriginal(box,e.quote);if(source)appendSource(box,source.source,source.start_line,source.end_line);}el('evidence').append(box);}el('gold').replaceChildren();for(const g of c.gold||[]){el('gold').append(node('pre',tr(g.quote)));if(tr(g.quote)!==g.quote)appendOriginal(el('gold'),g.quote);appendSource(el('gold'),g.doc_id,g.source_line);}if(!c.gold?.length)el('gold').append(node('p','本题没有标注的答案段落，请按无答案、错误前提或权限标准判断。','small'));el('context').replaceChildren();for(const item of c.context||[]){const d=document.createElement('details');d.append(node('summary',`文档编号：${item.chunk.source} · 第 ${item.chunk.start_line}–${item.chunk.end_line} 行`));d.append(node('p','这是本题模型实际收到的资料；中文摘录在上方，以下保留用于核对的原始正文。','small'));appendOriginal(d,item.chunk.text,'查看这段原始英文上下文');el('context').append(d);}if(!c.context?.length)el('context').append(node('p','没有资料进入模型上下文。','small'));const restrictions=[`评测身份：${identities[c.identity]||c.identity}`,expected[c.expected_behavior],c.forbidden_documents?.length?`不得进入上下文的文档编号：${c.forbidden_documents.join('、')}`:'',c.forbidden_strings?.length?`不得泄露的虚构测试标记：${c.forbidden_strings.join('、')}`:'','完整原文提供给审核者查证，不代表它进入过该题模型上下文。'];el('boundary').replaceChildren(...restrictions.filter(Boolean).map(x=>node('p',x)));}
+/** renderFields：每项默认待选择，恢复的值只能来自此前人工保存；引用支持的不适用受回答状态限制。 */
+function renderFields(c,score){el('score-fields').replaceChildren();for(const [id,title,hint] of fieldInfo){const row=node('div','','score-row');const label=node('label',title,'label');label.htmlFor=id;row.append(label,node('div',hint,'hint'));const select=document.createElement('select');select.id=id;for(const [value,name] of [['','请选择'],['true','通过'],['false','未通过'],...(id==='all_claims_supported'&&c.status!=='answered'?[['na','不适用 · 没有生成陈述']]:[])]){const option=node('option',name);option.value=value;select.append(option);}select.value=score?(score[id]===null?'na':String(score[id])):'';select.onchange=()=>{dirty=true;};row.append(select);el('score-fields').append(row);}el('notes').value=score?.notes||'';text('review-state',score?`已保存于 ${new Date(score.reviewed_at).toLocaleString()}，${score.task_success?'完整任务通过':'完整任务未通过'}。`:'尚未保存任何人工评分。');}
+/** renderCase：显示所选题的完整审核信息，并调用证据、评分和进度渲染函数。 */
+function renderCase(){const c=material.cases[selected],score=material.scores[c.id];text('case-id',`${c.id} · ${selected+1} / ${material.cases.length}`);text('category',labels[c.category]||c.category);text('question',material.translations?.questions?.[c.id]||c.question);text('original-question',c.question);text('original-answer',c.answer||'本题运行失败，没有最终回答。');text('case-meta',`评测身份：${identities[c.identity]||c.identity}　系统动作：${c.status==='answered'?'回答':c.status==='abstained'?'拒答':'运行错误'}`);text('expectation',expected[c.expected_behavior]);text('answer',translatedAnswer(c));renderEvidence(c);renderFields(c,score);renderGrid();renderProgress();text('footer',`模型：${material.metadata.model} · 来源摘要：${material.metadata.source_report_sha256} · 中文仅用于辅助阅读；原始评测和人工记录保持独立。`);setMessage('');dirty=false;}
+/** go：切换题目前提醒未保存更改，再用 renderCase 读取真实已保存状态。 */
+function go(index){if(dirty&&!confirm('本题修改尚未保存。确定切换并放弃这些修改吗？'))return;selected=index;renderCase();window.scrollTo({top:0,behavior:'smooth'});}
+/** adjacent：在当前筛选范围中选择上一题或下一题，不自动填写评分。 */
+function adjacent(direction){const list=visibleCases();if(!list.length)return;const at=list.findIndex(x=>x.i===selected);const next=Math.max(0,Math.min(list.length-1,(at<0?0:at)+direction));go(list[next].i);}
+/** collectScore：要求五项明确判断，把选择转为布尔值或不适用，失败时要求原因。 */
+function collectScore(){const payload={reviewer_name:el('reviewer').value.trim(),notes:el('notes').value.trim()};if(!payload.reviewer_name)throw new Error('请填写审核者称呼。');for(const [id] of fieldInfo){const value=el(id).value;if(!value)throw new Error('请完成五项判断；拒答的引用支持项可选择不适用。');payload[id]=value==='na'?null:value==='true';}if(fieldInfo.some(([id])=>payload[id]===false)&&!payload.notes)throw new Error('未通过的题目请填写具体原因。');return payload;}
+/** saveScore：仅用户点击时提交人工选择，等待服务器原子写入成功后更新进度；不自动判题。 */
+async function saveScore(next){el('save').disabled=el('save-next').disabled=true;try{const payload=collectScore();const c=material.cases[selected];const saved=await api(`/api/review/${encodeURIComponent(c.id)}`,{method:'POST',headers:{'Content-Type':'application/json','X-Review-Action':'manual'},body:JSON.stringify(payload)});material.scores=saved.scores;material.metadata={...saved};delete material.metadata.scores;localStorage.setItem('rag-reviewer-name',payload.reviewer_name);dirty=false;renderCase();setMessage('已写入本地评分文件。');if(next){const pending=material.cases.findIndex((c,i)=>i>selected&&!material.scores[c.id]);const first=material.cases.findIndex(c=>!material.scores[c.id]);if(pending>=0)go(pending);else if(first>=0)go(first);}}catch(error){setMessage(error.message,true);}finally{el('save').disabled=el('save-next').disabled=false;}}
+/** load：加载冻结评测和现有人工评分，恢复审核者称呼并显示首个待审核题。 */
+async function load(){try{material=await api('/api/review');el('reviewer').value=localStorage.getItem('rag-reviewer-name')||'项目作者';const pending=material.cases.findIndex(c=>!material.scores[c.id]);selected=pending<0?0:pending;renderCase();}catch(error){text('answer',error.message);}}
+el('save').onclick=()=>saveScore(false);el('save-next').onclick=()=>saveScore(true);el('prev').onclick=()=>adjacent(-1);el('next').onclick=()=>adjacent(1);el('filter').onchange=()=>{const list=visibleCases();if(list.length&&!list.some(x=>x.i===selected))go(list[0].i);else renderGrid();};el('notes').oninput=()=>{dirty=true;};el('score-form').onsubmit=event=>event.preventDefault();window.addEventListener('beforeunload',event=>{if(dirty){event.preventDefault();event.returnValue='';}});load();
+</script>
+</body>
+</html>

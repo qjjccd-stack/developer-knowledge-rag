@@ -1,0 +1,12 @@
+fastembed==0.7.4
+rank-bm25==0.2.2
+fastapi>=0.115,<1
+uvicorn>=0.30,<1
+pydantic-settings>=2,<3
+numpy>=1.26,<3
+httpx>=0.27,<1
+openai>=1.30,<3
+pydantic>=2,<3
+huggingface-hub>=0.23,<2
+python-dotenv>=1,<2
+langdetect==1.0.9

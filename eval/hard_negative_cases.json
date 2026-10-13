@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "annotation": "Six near-domain public-document no-answer additions; contains no company facts or sensitive metadata. Curated development set, not a blind test.",
+  "cases": [
+    {
+      "id": "H001",
+      "question": "What exact requests-per-second benchmark does the supplied FastAPI workers documentation report for 16 workers?",
+      "category": "near_domain_unanswerable",
+      "identity": "admin",
+      "expected_behavior": "abstain",
+      "evidence": [],
+      "review_rubric": "Only public technical docs are supplied. Related concepts and examples are present, but the requested version or measurement is absent. Abstain rather than inventing a number."
+    },
+    {
+      "id": "H002",
+      "question": "What maximum requests per second does the supplied Celery section guarantee?",
+      "category": "near_domain_unanswerable",
+      "identity": "admin",
+      "expected_behavior": "abstain",
+      "evidence": [],
+      "review_rubric": "Only public technical docs are supplied. Related concepts and examples are present, but the requested version or measurement is absent. Abstain rather than inventing a number."
+    },
+    {
+      "id": "H003",
+      "question": "What exact numerical task-loss rate does this documentation guarantee for BackgroundTasks after process restarts?",
+      "category": "near_domain_unanswerable",
+      "identity": "admin",
+      "expected_behavior": "abstain",
+      "evidence": [],
+      "review_rubric": "Only public technical docs are supplied. Related concepts and examples are present, but the requested version or measurement is absent. Abstain rather than inventing a number."
+    },
+    {
+      "id": "H004",
+      "question": "Which exact Redis version is required according to the supplied BackgroundTasks guide?",
+      "category": "near_domain_unanswerable",
+      "identity": "admin",
+      "expected_behavior": "abstain",
+      "evidence": [],
+      "review_rubric": "Only public technical docs are supplied. Related concepts and examples are present, but the requested version or measurement is absent. Abstain rather than inventing a number."
+    },
+    {
+      "id": "H005",
+      "question": "What exact concurrent WebSocket connection limit does the sample ConnectionManager benchmark demonstrate?",
+      "category": "near_domain_unanswerable",
+      "identity": "admin",
+      "expected_behavior": "abstain",
+      "evidence": [],
+      "review_rubric": "Only public technical docs are supplied. Related concepts and examples are present, but the requested version or measurement is absent. Abstain rather than inventing a number."
+    },
+    {
+      "id": "H006",
+      "question": "What exact JWT verification time in milliseconds does this documentation measure?",
+      "category": "near_domain_unanswerable",
+      "identity": "admin",
+      "expected_behavior": "abstain",
+      "evidence": [],
+      "review_rubric": "Only public technical docs are supplied. Related concepts and examples are present, but the requested version or measurement is absent. Abstain rather than inventing a number."
+    }
+  ]
+}

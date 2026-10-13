@@ -1,0 +1,11 @@
+{
+  "verified_at": "2026-10-12T08:22:32.594788+00:00",
+  "url": "http://127.0.0.1:8011/",
+  "cases": 50,
+  "questions_in_chinese": 50,
+  "translated_fragments": 349,
+  "original_report_frozen": true,
+  "human_reviewed": 0,
+  "independent_third_party_reviewed": 0,
+  "scope": "local review preparation and Chinese reading aids; no human grades synthesized"
+}

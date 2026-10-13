@@ -1,0 +1,103 @@
+{
+  "created_at": "2026-10-12T02:39:12.373195+00:00",
+  "scope": "new live replays of original prompt and captured evidence; not recovered historical drafts",
+  "rows": [
+    {
+      "id": "Q005",
+      "repeat": 0,
+      "status": "answered",
+      "reason": "",
+      "validation_failure": "",
+      "input_tokens": 1016,
+      "output_tokens": 184,
+      "raw_draft": "{\"claims\":[{\"text\":\"No, you cannot enable CORS credentials while keeping origins, methods and headers as wildcards.\",\"evidence\":[{\"id\":1,\"quote\":\"None of `allow_origins`, `allow_methods` and `allow_headers` can be set to `['*']` if `allow_credentials` is set to `True`. All of them must be [explicitly specified](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#credentialed_requests_and_wildcards).\"}]},{\"text\":\"Using the wildcard only allows certain types of communication, excluding everything that involves credentials such as cookies and Authorization headers.\",\"evidence\":[{\"id\":3,\"quote\":\"But that will only allow certain types of communication, excluding everything that involves credentials: Cookies, Authorization headers like those used with Bearer Tokens, etc.\"}]}]}",
+      "finish_reason": "stop"
+    },
+    {
+      "id": "Q005",
+      "repeat": 1,
+      "status": "abstained",
+      "reason": "INVALID_CITATION",
+      "validation_failure": "QUOTE_NOT_IN_EVIDENCE",
+      "input_tokens": 1016,
+      "output_tokens": 154,
+      "raw_draft": "{\"claims\":[{\"text\":\"No, you cannot enable CORS credentials while keeping origins, methods and headers as wildcards.\",\"evidence\":[{\"id\":1,\"quote\":\"None of `allow_origins`, `allow_methods` and `allow_headers` can be set to `['*']` if `allow_credentials` is set to `True`. All of them must be explicitly specified.\"}]},{\"text\":\"Using the wildcard only allows certain types of communication, excluding everything that involves credentials such as cookies and Authorization headers.\",\"evidence\":[{\"id\":3,\"quote\":\"But that will only allow certain types of communication, excluding everything that involves credentials: Cookies, Authorization headers like those used with Bearer Tokens, etc.\"}]}]}",
+      "finish_reason": "stop",
+      "diagnosis": "Model removed the Markdown hyperlink from the quoted sentence; the result was not an exact substring."
+    },
+    {
+      "id": "Q005",
+      "repeat": 2,
+      "status": "answered",
+      "reason": "",
+      "validation_failure": "",
+      "input_tokens": 1016,
+      "output_tokens": 184,
+      "raw_draft": "{\"claims\":[{\"text\":\"No, you cannot enable CORS credentials while keeping origins, methods and headers as wildcards.\",\"evidence\":[{\"id\":1,\"quote\":\"None of `allow_origins`, `allow_methods` and `allow_headers` can be set to `['*']` if `allow_credentials` is set to `True`. All of them must be [explicitly specified](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#credentialed_requests_and_wildcards).\"}]},{\"text\":\"Using the wildcard only allows certain types of communication, excluding everything that involves credentials such as cookies and Authorization headers.\",\"evidence\":[{\"id\":3,\"quote\":\"But that will only allow certain types of communication, excluding everything that involves credentials: Cookies, Authorization headers like those used with Bearer Tokens, etc.\"}]}]}",
+      "finish_reason": "stop"
+    },
+    {
+      "id": "Q028",
+      "repeat": 0,
+      "status": "abstained",
+      "reason": "INVALID_CITATION",
+      "validation_failure": "INVALID_SCHEMA",
+      "input_tokens": 1207,
+      "output_tokens": 460,
+      "raw_draft": "{\"claims\":[{\"text\":\"To use TestClient, first install httpx.\",\"evidence\":[{\"id\":1,\"quote\":\"To use `TestClient`, first install [`httpx`](https://www.python-httpx.org).\"}]},{\"text\":\"Import TestClient.\",\"evidence\":[{\"id\":1,\"quote\":\"Import `TestClient`.\"}]},{\"text\":\"Create a TestClient by passing your FastAPI application to it.\",\"evidence\":[{\"id\":1,\"quote\":\"Create a `TestClient` by passing your **FastAPI** application to it.\"}]},{\"text\":\"Create functions with a name that starts with test_ (this is a standard pytest convention).\",\"evidence\":[{\"id\":1,\"quote\":\"Create functions with a name that starts with `test_` (this is a standard `pytest` convention).\"}]},{\"text\":\"Use the TestClient object the same way as you do with httpx.\",\"evidence\":[{\"id\":1,\"quote\":\"Use the `TestClient` object the same way as you do with `httpx`.\"}]},{\"text\":\"Write simple assert statements with the standard Python expressions that you need to check.\",\"evidence\":[{\"id\":1,\"quote\":\"Write simple `assert` statements with the standard Python expressions that you need to check (again, standard `pytest`).\"}]},{\"text\":\"The testing functions are normal def, not async def, and the calls to the client are also normal calls, not using await.\",\"evidence\":[{\"id\":1,\"quote\":\"Notice that the testing functions are normal `def`, not `async def`.\\n\\nAnd the calls to the client are also normal calls, not using `await`.\"}]},{\"text\":\"You could also use from starlette.testclient import TestClient.\",\"evidence\":[{\"id\":1,\"quote\":\"You could also use `from starlette.testclient import TestClient`.\"}]},{\"text\":\"FastAPI provides the same starlette.testclient as fastapi.testclient just as a convenience.\",\"evidence\":[{\"id\":1,\"quote\":\"**FastAPI** provides the same `starlette.testclient` as `fastapi.testclient` just as a convenience for you, the developer.\"}]}]}",
+      "finish_reason": "stop",
+      "schema_errors": [
+        {
+          "location": [
+            "claims"
+          ],
+          "type": "too_long",
+          "message": "List should have at most 6 items after validation, not 9"
+        }
+      ],
+      "diagnosis": "Model emitted 9 claims while the schema allowed at most 6; the original prompt omitted this limit."
+    },
+    {
+      "id": "Q028",
+      "repeat": 1,
+      "status": "abstained",
+      "reason": "INVALID_CITATION",
+      "validation_failure": "INVALID_SCHEMA",
+      "input_tokens": 1207,
+      "output_tokens": 460,
+      "raw_draft": "{\"claims\":[{\"text\":\"To use TestClient, first install httpx.\",\"evidence\":[{\"id\":1,\"quote\":\"To use `TestClient`, first install [`httpx`](https://www.python-httpx.org).\"}]},{\"text\":\"Import TestClient.\",\"evidence\":[{\"id\":1,\"quote\":\"Import `TestClient`.\"}]},{\"text\":\"Create a TestClient by passing your FastAPI application to it.\",\"evidence\":[{\"id\":1,\"quote\":\"Create a `TestClient` by passing your **FastAPI** application to it.\"}]},{\"text\":\"Create functions with a name that starts with test_ (this is a standard pytest convention).\",\"evidence\":[{\"id\":1,\"quote\":\"Create functions with a name that starts with `test_` (this is a standard `pytest` convention).\"}]},{\"text\":\"Use the TestClient object the same way as you do with httpx.\",\"evidence\":[{\"id\":1,\"quote\":\"Use the `TestClient` object the same way as you do with `httpx`.\"}]},{\"text\":\"Write simple assert statements with the standard Python expressions that you need to check.\",\"evidence\":[{\"id\":1,\"quote\":\"Write simple `assert` statements with the standard Python expressions that you need to check (again, standard `pytest`).\"}]},{\"text\":\"The testing functions are normal def, not async def, and the calls to the client are also normal calls, not using await.\",\"evidence\":[{\"id\":1,\"quote\":\"Notice that the testing functions are normal `def`, not `async def`.\\n\\nAnd the calls to the client are also normal calls, not using `await`.\"}]},{\"text\":\"You could also use from starlette.testclient import TestClient.\",\"evidence\":[{\"id\":1,\"quote\":\"You could also use `from starlette.testclient import TestClient`.\"}]},{\"text\":\"FastAPI provides the same starlette.testclient as fastapi.testclient just as a convenience.\",\"evidence\":[{\"id\":1,\"quote\":\"**FastAPI** provides the same `starlette.testclient` as `fastapi.testclient` just as a convenience for you, the developer.\"}]}]}",
+      "finish_reason": "stop",
+      "schema_errors": [
+        {
+          "location": [
+            "claims"
+          ],
+          "type": "too_long",
+          "message": "List should have at most 6 items after validation, not 9"
+        }
+      ],
+      "diagnosis": "Model emitted 9 claims while the schema allowed at most 6; the original prompt omitted this limit."
+    },
+    {
+      "id": "Q028",
+      "repeat": 2,
+      "status": "abstained",
+      "reason": "INVALID_CITATION",
+      "validation_failure": "INVALID_SCHEMA",
+      "input_tokens": 1207,
+      "output_tokens": 460,
+      "raw_draft": "{\"claims\":[{\"text\":\"To use TestClient, first install httpx.\",\"evidence\":[{\"id\":1,\"quote\":\"To use `TestClient`, first install [`httpx`](https://www.python-httpx.org).\"}]},{\"text\":\"Import TestClient.\",\"evidence\":[{\"id\":1,\"quote\":\"Import `TestClient`.\"}]},{\"text\":\"Create a TestClient by passing your FastAPI application to it.\",\"evidence\":[{\"id\":1,\"quote\":\"Create a `TestClient` by passing your **FastAPI** application to it.\"}]},{\"text\":\"Create functions with a name that starts with test_ (this is a standard pytest convention).\",\"evidence\":[{\"id\":1,\"quote\":\"Create functions with a name that starts with `test_` (this is a standard `pytest` convention).\"}]},{\"text\":\"Use the TestClient object the same way as you do with httpx.\",\"evidence\":[{\"id\":1,\"quote\":\"Use the `TestClient` object the same way as you do with `httpx`.\"}]},{\"text\":\"Write simple assert statements with the standard Python expressions that you need to check.\",\"evidence\":[{\"id\":1,\"quote\":\"Write simple `assert` statements with the standard Python expressions that you need to check (again, standard `pytest`).\"}]},{\"text\":\"The testing functions are normal def, not async def, and the calls to the client are also normal calls, not using await.\",\"evidence\":[{\"id\":1,\"quote\":\"Notice that the testing functions are normal `def`, not `async def`.\\n\\nAnd the calls to the client are also normal calls, not using `await`.\"}]},{\"text\":\"You could also use from starlette.testclient import TestClient.\",\"evidence\":[{\"id\":1,\"quote\":\"You could also use `from starlette.testclient import TestClient`.\"}]},{\"text\":\"FastAPI provides the same starlette.testclient as fastapi.testclient just as a convenience.\",\"evidence\":[{\"id\":1,\"quote\":\"**FastAPI** provides the same `starlette.testclient` as `fastapi.testclient` just as a convenience for you, the developer.\"}]}]}",
+      "finish_reason": "stop",
+      "schema_errors": [
+        {
+          "location": [
+            "claims"
+          ],
+          "type": "too_long",
+          "message": "List should have at most 6 items after validation, not 9"
+        }
+      ],
+      "diagnosis": "Model emitted 9 claims while the schema allowed at most 6; the original prompt omitted this limit."
+    }
+  ]
+}

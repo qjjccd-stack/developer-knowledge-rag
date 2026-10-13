@@ -1,0 +1,225 @@
+{
+  "downloaded_at": "2026-10-11T14:08:54.325503+00:00",
+  "documents": [
+    {
+      "doc_id": "async",
+      "file": "data/corpus/async.md",
+      "title": "Concurrency and async / await",
+      "sha256": "1d4397242a6b63f64dd5106e36999dff6deacdc79bb0bb157aae6cc36f8a2c44",
+      "department": "public",
+      "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/async.md",
+      "raw_url": "https://raw.githubusercontent.com/fastapi/fastapi/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/async.md",
+      "license": "MIT",
+      "commit": "f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007"
+    },
+    {
+      "doc_id": "tutorial.background-tasks",
+      "file": "data/corpus/tutorial.background-tasks.md",
+      "title": "Background Tasks",
+      "sha256": "7a34e7a4a7bd2cb9e0b465588b77cf007b0a5c8bdcf7530ff3619ff6b3642468",
+      "department": "public",
+      "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/tutorial/background-tasks.md",
+      "raw_url": "https://raw.githubusercontent.com/fastapi/fastapi/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/tutorial/background-tasks.md",
+      "license": "MIT",
+      "commit": "f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007"
+    },
+    {
+      "doc_id": "tutorial.cors",
+      "file": "data/corpus/tutorial.cors.md",
+      "title": "CORS (Cross-Origin Resource Sharing)",
+      "sha256": "da167c442cc3a73a776782a3e45936165c713e63cc40a9f0117d490a51a60b17",
+      "department": "public",
+      "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/tutorial/cors.md",
+      "raw_url": "https://raw.githubusercontent.com/fastapi/fastapi/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/tutorial/cors.md",
+      "license": "MIT",
+      "commit": "f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007"
+    },
+    {
+      "doc_id": "advanced.events",
+      "file": "data/corpus/advanced.events.md",
+      "title": "Lifespan Events",
+      "sha256": "33de759da943ea437830d8c744d8c0a3887f40c54f738886314575805216afab",
+      "department": "public",
+      "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/advanced/events.md",
+      "raw_url": "https://raw.githubusercontent.com/fastapi/fastapi/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/advanced/events.md",
+      "license": "MIT",
+      "commit": "f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007"
+    },
+    {
+      "doc_id": "tutorial.handling-errors",
+      "file": "data/corpus/tutorial.handling-errors.md",
+      "title": "Handling Errors",
+      "sha256": "c0cb7aeafe8ed3802396f2421755cf1e740000347305c515a2c828c0c41f4b1a",
+      "department": "public",
+      "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/tutorial/handling-errors.md",
+      "raw_url": "https://raw.githubusercontent.com/fastapi/fastapi/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/tutorial/handling-errors.md",
+      "license": "MIT",
+      "commit": "f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007"
+    },
+    {
+      "doc_id": "tutorial.testing",
+      "file": "data/corpus/tutorial.testing.md",
+      "title": "Testing",
+      "sha256": "759b81a9967dc50ec405877a23bb362d202e5d483fe38ad2308cb32a88eb8eda",
+      "department": "public",
+      "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/tutorial/testing.md",
+      "raw_url": "https://raw.githubusercontent.com/fastapi/fastapi/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/tutorial/testing.md",
+      "license": "MIT",
+      "commit": "f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007"
+    },
+    {
+      "doc_id": "advanced.behind-a-proxy",
+      "file": "data/corpus/advanced.behind-a-proxy.md",
+      "title": "Behind a Proxy",
+      "sha256": "34fd4b6e637e98a415afe614a10d848dfa4d67e6e15293047d6b6e17ad203c8f",
+      "department": "ops",
+      "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/advanced/behind-a-proxy.md",
+      "raw_url": "https://raw.githubusercontent.com/fastapi/fastapi/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/advanced/behind-a-proxy.md",
+      "license": "MIT",
+      "commit": "f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007"
+    },
+    {
+      "doc_id": "tutorial.security.oauth2-jwt",
+      "file": "data/corpus/tutorial.security.oauth2-jwt.md",
+      "title": "OAuth2 with Password (and hashing), Bearer with JWT tokens",
+      "sha256": "09de4db00267448e11cbdc198154c6bf3ac4aa48cb88ecb87ee4e71d44d9272b",
+      "department": "public",
+      "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/tutorial/security/oauth2-jwt.md",
+      "raw_url": "https://raw.githubusercontent.com/fastapi/fastapi/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/tutorial/security/oauth2-jwt.md",
+      "license": "MIT",
+      "commit": "f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007"
+    },
+    {
+      "doc_id": "tutorial.dependencies.index",
+      "file": "data/corpus/tutorial.dependencies.index.md",
+      "title": "Dependencies",
+      "sha256": "83319cc87297bb0959c5721a112133e6a3cd19900163c348a8ee6cf4818cd21f",
+      "department": "public",
+      "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/tutorial/dependencies/index.md",
+      "raw_url": "https://raw.githubusercontent.com/fastapi/fastapi/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/tutorial/dependencies/index.md",
+      "license": "MIT",
+      "commit": "f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007"
+    },
+    {
+      "doc_id": "tutorial.dependencies.dependencies-with-yield",
+      "file": "data/corpus/tutorial.dependencies.dependencies-with-yield.md",
+      "title": "Dependencies with yield",
+      "sha256": "93f58ceecafff1967c39047657ae08a020d2452c84d795dc777901c35b8a0d17",
+      "department": "public",
+      "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/tutorial/dependencies/dependencies-with-yield.md",
+      "raw_url": "https://raw.githubusercontent.com/fastapi/fastapi/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/tutorial/dependencies/dependencies-with-yield.md",
+      "license": "MIT",
+      "commit": "f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007"
+    },
+    {
+      "doc_id": "deployment.server-workers",
+      "file": "data/corpus/deployment.server-workers.md",
+      "title": "Server Workers - Uvicorn with Workers",
+      "sha256": "5b4bd1b6afe1c9ef70bd210aa101ce386f6c48ee9f8c97e4066ab667545b74da",
+      "department": "ops",
+      "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/deployment/server-workers.md",
+      "raw_url": "https://raw.githubusercontent.com/fastapi/fastapi/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/deployment/server-workers.md",
+      "license": "MIT",
+      "commit": "f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007"
+    },
+    {
+      "doc_id": "deployment.docker",
+      "file": "data/corpus/deployment.docker.md",
+      "title": "FastAPI in Containers - Docker",
+      "sha256": "0337b98d51778755f59aa1b96ba319f0decc20136f3b3ff1b7547619a5c71100",
+      "department": "ops",
+      "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/deployment/docker.md",
+      "raw_url": "https://raw.githubusercontent.com/fastapi/fastapi/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/deployment/docker.md",
+      "license": "MIT",
+      "commit": "f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007"
+    },
+    {
+      "doc_id": "advanced.testing-dependencies",
+      "file": "data/corpus/advanced.testing-dependencies.md",
+      "title": "Testing Dependencies with Overrides",
+      "sha256": "6d26e7728428a508c2a51ac8e53920d003cbc9ed83f63df2e20590b199f12c2a",
+      "department": "public",
+      "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/advanced/testing-dependencies.md",
+      "raw_url": "https://raw.githubusercontent.com/fastapi/fastapi/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/advanced/testing-dependencies.md",
+      "license": "MIT",
+      "commit": "f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007"
+    },
+    {
+      "doc_id": "tutorial.middleware",
+      "file": "data/corpus/tutorial.middleware.md",
+      "title": "Middleware",
+      "sha256": "58cb232d288a5bdfa6f91680f6615520748884e17463059a1f28e78273563c39",
+      "department": "public",
+      "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/tutorial/middleware.md",
+      "raw_url": "https://raw.githubusercontent.com/fastapi/fastapi/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/tutorial/middleware.md",
+      "license": "MIT",
+      "commit": "f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007"
+    },
+    {
+      "doc_id": "tutorial.response-model",
+      "file": "data/corpus/tutorial.response-model.md",
+      "title": "Response Model - Return Type",
+      "sha256": "40893b055f60ae81f2d149c6159ef98555ca05845d210a4c88f3824d66092be1",
+      "department": "public",
+      "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/tutorial/response-model.md",
+      "raw_url": "https://raw.githubusercontent.com/fastapi/fastapi/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/tutorial/response-model.md",
+      "license": "MIT",
+      "commit": "f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007"
+    },
+    {
+      "doc_id": "tutorial.body",
+      "file": "data/corpus/tutorial.body.md",
+      "title": "Request Body",
+      "sha256": "1a3e0f7b9220dcee9a7379c999d57b49e126ed07725dbbc5566ee1278d4ec670",
+      "department": "public",
+      "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/tutorial/body.md",
+      "raw_url": "https://raw.githubusercontent.com/fastapi/fastapi/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/tutorial/body.md",
+      "license": "MIT",
+      "commit": "f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007"
+    },
+    {
+      "doc_id": "tutorial.query-params-str-validations",
+      "file": "data/corpus/tutorial.query-params-str-validations.md",
+      "title": "Query Parameters and String Validations",
+      "sha256": "5abf0c57ed2195f1c2117bbeaa527a08e5070ef777c7e579e8a11bf6eb6c826d",
+      "department": "public",
+      "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/tutorial/query-params-str-validations.md",
+      "raw_url": "https://raw.githubusercontent.com/fastapi/fastapi/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/tutorial/query-params-str-validations.md",
+      "license": "MIT",
+      "commit": "f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007"
+    },
+    {
+      "doc_id": "tutorial.path-params-numeric-validations",
+      "file": "data/corpus/tutorial.path-params-numeric-validations.md",
+      "title": "Path Parameters and Numeric Validations",
+      "sha256": "56c3e95531b6dea480130b30c525cfa1388cfdde159e7429845fedd392fc6fe5",
+      "department": "public",
+      "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/tutorial/path-params-numeric-validations.md",
+      "raw_url": "https://raw.githubusercontent.com/fastapi/fastapi/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/tutorial/path-params-numeric-validations.md",
+      "license": "MIT",
+      "commit": "f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007"
+    },
+    {
+      "doc_id": "tutorial.metadata",
+      "file": "data/corpus/tutorial.metadata.md",
+      "title": "Metadata and Docs URLs",
+      "sha256": "96ed076601792a2c2564b8453e85d094b84c25d6b347be4dec70135fe179da2b",
+      "department": "public",
+      "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/tutorial/metadata.md",
+      "raw_url": "https://raw.githubusercontent.com/fastapi/fastapi/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/tutorial/metadata.md",
+      "license": "MIT",
+      "commit": "f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007"
+    },
+    {
+      "doc_id": "advanced.websockets",
+      "file": "data/corpus/advanced.websockets.md",
+      "title": "WebSockets",
+      "sha256": "8320bc17f58bd4427b91caf7ab7aceb2143b3203aba29f29116b8829e5f62f31",
+      "department": "public",
+      "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/advanced/websockets.md",
+      "raw_url": "https://raw.githubusercontent.com/fastapi/fastapi/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/advanced/websockets.md",
+      "license": "MIT",
+      "commit": "f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007"
+    }
+  ]
+}

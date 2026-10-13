@@ -1,0 +1,56 @@
+{
+  "verified_at": "2026-10-12T03:15:15.617253+00:00",
+  "url": "http://127.0.0.1:8010",
+  "checks": {
+    "health": true,
+    "reader_documents": 19,
+    "ops_documents": 22,
+    "span_contract": true,
+    "explicit_language_parameter": true,
+    "cleanup_code_context": true,
+    "default_extractive": true
+  },
+  "scope": "local HTTP with cached retrieval models, default extractive generation; no paid generation",
+  "context_selection": [
+    {
+      "chunk_id": "b9102e48a8af1529c434c25d",
+      "source": "code.dependencies.tutorial007_py310",
+      "lines": [
+        1,
+        6
+      ],
+      "reason": "exact_identifier",
+      "anchor_chunk_id": null
+    },
+    {
+      "chunk_id": "19dad58f1d74e3d31ee3b796",
+      "source": "tutorial.dependencies.dependencies-with-yield",
+      "lines": [
+        50,
+        61
+      ],
+      "reason": "exact_identifier",
+      "anchor_chunk_id": null
+    },
+    {
+      "chunk_id": "c801c942d086e6e252991cf1",
+      "source": "tutorial.dependencies.dependencies-with-yield",
+      "lines": [
+        26,
+        49
+      ],
+      "reason": "relevance_anchor",
+      "anchor_chunk_id": null
+    },
+    {
+      "chunk_id": "127503a07762e2d17a77aa8e",
+      "source": "tutorial.dependencies.dependencies-with-yield",
+      "lines": [
+        62,
+        85
+      ],
+      "reason": "adjacent_context",
+      "anchor_chunk_id": "19dad58f1d74e3d31ee3b796"
+    }
+  ]
+}

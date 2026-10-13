@@ -1,0 +1,54 @@
+{
+  "name": "rag-qa-system golden set v1",
+  "description": "Curated Q&A pairs over the sample docs corpus. relevant_sources lists the document filenames (as indexed) that a correct retrieval MUST surface.",
+  "items": [
+    {
+      "id": 1,
+      "question": "What is RAG and why is it used?",
+      "expected": "RAG stands for Retrieval-Augmented Generation. It combines a retriever that fetches relevant passages from a knowledge base with a generator that conditions its answer on those passages, reducing hallucination and grounding answers in source data.",
+      "relevant_sources": ["rag_architecture.md"]
+    },
+    {
+      "id": 2,
+      "question": "What is the difference between chunking by character count and semantic chunking?",
+      "expected": "Character-count chunking cuts text at fixed intervals and can split mid-sentence, destroying meaning. Semantic chunking splits on sentence or paragraph boundaries and merges up to a target size, preserving meaning within each chunk.",
+      "relevant_sources": ["chunking_strategies.md"]
+    },
+    {
+      "id": 3,
+      "question": "Which vector database is recommended for under 10 million vectors?",
+      "expected": "pgvector is fine for under 10 million vectors. For larger or specialized workloads, Pinecone, Weaviate, or Qdrant are common choices.",
+      "relevant_sources": ["vector_databases.md"]
+    },
+    {
+      "id": 4,
+      "question": "What does recall@k measure in a retrieval system?",
+      "expected": "recall@k measures the fraction of relevant items that appear in the top-k retrieved results. It is a retrieval-only metric evaluated before any generation step.",
+      "relevant_sources": ["evaluation.md"]
+    },
+    {
+      "id": 5,
+      "question": "Why use a cross-encoder for reranking instead of a bi-encoder?",
+      "expected": "A cross-encoder scores query and passage together so they attend to each other, giving better relevance estimates than a bi-encoder. It is slower, so it is used as a second stage after fast bi-encoder retrieval.",
+      "relevant_sources": ["rag_architecture.md"]
+    },
+    {
+      "id": 6,
+      "question": "What is Reciprocal Rank Fusion and why use it for hybrid search?",
+      "expected": "Reciprocal Rank Fusion (RRF) combines rankings from multiple retrievers using 1/(k+rank). It needs no score normalization, making it robust for fusing BM25 and dense scores that live on different scales.",
+      "relevant_sources": ["rag_architecture.md"]
+    },
+    {
+      "id": 7,
+      "question": "What is a hallucination in the context of RAG answers?",
+      "expected": "A hallucination is content in the generated answer that is not supported by the retrieved context. Faithfulness measures the fraction of answer tokens grounded in the context.",
+      "relevant_sources": ["evaluation.md"]
+    },
+    {
+      "id": 8,
+      "question": "What are the trade-offs of a smaller chunk size?",
+      "expected": "Smaller chunks improve retrieval precision because each chunk is more focused, but they may fragment context needed to answer synthesis questions. Overlap helps preserve continuity across boundaries.",
+      "relevant_sources": ["chunking_strategies.md"]
+    }
+  ]
+}

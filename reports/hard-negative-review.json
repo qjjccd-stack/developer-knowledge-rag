@@ -1,0 +1,907 @@
+{
+  "created_at": "2026-10-11T15:10:36.422483+00:00",
+  "dataset_sha256": "3fb8a3f084e1a9d675dd46e94c9fdb7d6e971abc5ee8348834818bdef62ed55b",
+  "snapshot_sha256": "2599cf4c5c7a0f6d836a4f2206404f765e604278005230d4d0450241b73da802",
+  "model": "deepseek-chat",
+  "requested": 6,
+  "summary": {
+    "cases": 6,
+    "live_responses_with_usage": 6,
+    "input_tokens": 3834,
+    "output_tokens": 30,
+    "groups": {
+      "near_domain_unanswerable": {
+        "cases": 6,
+        "errors": 0,
+        "boundary_passes": 6
+      }
+    },
+    "human_reviewed": 0,
+    "assistant_reviewed": 6
+  },
+  "rows": [
+    {
+      "id": "H001",
+      "question": "What exact requests-per-second benchmark does the supplied FastAPI workers documentation report for 16 workers?",
+      "category": "near_domain_unanswerable",
+      "identity": "admin",
+      "expected_behavior": "abstain",
+      "evidence": [],
+      "review_rubric": "Only public technical docs are supplied. Related concepts and examples are present, but the requested version or measurement is absent. Abstain rather than inventing a number.",
+      "gold": [],
+      "answer": "当前证据不足以回答。",
+      "status": "abstained",
+      "reason": "LLM_NO_EVIDENCE",
+      "generation_mode": "compatible",
+      "claims": [],
+      "validation_failure": "",
+      "citations": [],
+      "retrieved": [
+        {
+          "chunk": {
+            "text": "## Multiple Workers { #multiple-workers }\n\nYou can start multiple workers with the `--workers` command line option:\n\n//// tab | `fastapi`\n\nIf you use the `fastapi` command:\n\n<div class=\"termy\">\n\n```console\n$ <font color=\"#4E9A06\">fastapi</font> run --workers 4 <u style=\"text-decoration-style:solid\">main.py</u>\n\n  <span style=\"background-color:#009485\"><font color=\"#D3D7CF\"> FastAPI </font></span>  Starting production server 🚀\n\n             Searching for package file structure from directories with\n             <font color=\"#3465A4\">__init__.py</font> files\n             Importing from <font color=\"#75507B\">/home/user/code/</font><font color=\"#AD7FA8\">awesomeapp</font>\n\n   <span style=\"background-color:#007166\"><font color=\"#D3D7CF\"> module </font></span>  🐍 main.py\n\n     <span style=\"background-color:#007166\"><font color=\"#D3D7CF\"> code </font></span>  Importing the FastAPI app object from the module with the\n             following code:\n\n             <u style=\"text-decoration-style:solid\">from </u><u style=\"text-decoration-style:solid\"><b>main</b></u><u style=\"text-decoration-style:solid\"> import </u><u style=\"text-decoration-style:solid\"><b>app</b></u>",
+            "source": "deployment.server-workers",
+            "index": 2,
+            "heading": "Multiple Workers",
+            "start_line": 28,
+            "end_line": 53,
+            "revision": "729137055ca4112204922de4f421c5535a0cc4b592bafd5175e9a3942da046a7",
+            "chunk_id": "c2390455cdba81699887569f",
+            "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/deployment/server-workers.md",
+            "title": "Server Workers - Uvicorn with Workers"
+          },
+          "score": -5.362372398376465,
+          "dense_score": 0.29797226190567017,
+          "bm25_score": 11.689014169845914,
+          "rerank_score": -5.362372398376465
+        },
+        {
+          "chunk": {
+            "text": "# Server Workers - Uvicorn with Workers { #server-workers-uvicorn-with-workers }\n\nLet's check back those deployment concepts from before:\n\n* Security - HTTPS\n* Running on startup\n* Restarts\n* **Replication (the number of processes running)**\n* Memory\n* Previous steps before starting\n\nUp to this point, with all the tutorials in the docs, you have probably been running a **server program**, for example, using the `fastapi` command, that runs Uvicorn, running a **single process**.\n\nWhen deploying applications you will probably want to have some **replication of processes** to take advantage of **multiple cores** and to be able to handle more requests.\n\nAs you saw in the previous chapter about [Deployment Concepts](concepts.md), there are multiple strategies you can use.\n\nHere I'll show you how to use **Uvicorn** with **worker processes** using the `fastapi` command or the `uvicorn` command directly.\n\n/// note\n\nIf you are using containers, for example with Docker or Kubernetes, I'll tell you more about that in the next chapter: [FastAPI in Containers - Docker](docker.md).",
+            "source": "deployment.server-workers",
+            "index": 0,
+            "heading": "Server Workers - Uvicorn with Workers",
+            "start_line": 1,
+            "end_line": 23,
+            "revision": "729137055ca4112204922de4f421c5535a0cc4b592bafd5175e9a3942da046a7",
+            "chunk_id": "3c8184e7c1bd60fbf9c352ec",
+            "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/deployment/server-workers.md",
+            "title": "Server Workers - Uvicorn with Workers"
+          },
+          "score": -6.259893894195557,
+          "dense_score": 0.30849000811576843,
+          "bm25_score": 8.98703774242464,
+          "rerank_score": -6.259893894195557
+        },
+        {
+          "chunk": {
+            "text": "### Base Docker Image { #base-docker-image }\n\nThere used to be an official FastAPI Docker image: [tiangolo/uvicorn-gunicorn-fastapi](https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker). But it is now deprecated. ⛔️\n\nYou should probably **not** use this base Docker image (or any other similar one).\n\nIf you are using **Kubernetes** (or others) and you are already setting **replication** at the cluster level, with multiple **containers**. In those cases, you are better off **building an image from scratch** as described above: [Build a Docker Image for FastAPI](#build-a-docker-image-for-fastapi).\n\nAnd if you need to have multiple workers, you can simply use the `--workers` command line option.\n\n/// note | Technical Details\n\nThe Docker image was created when Uvicorn didn't support managing and restarting dead workers, so it was needed to use Gunicorn with Uvicorn, which added quite some complexity, just to have Gunicorn manage and restart the Uvicorn worker processes.\n\nBut now that Uvicorn (and the `fastapi` command) support using `--workers`, there's no reason to use a base Docker image instead of building your own (it's pretty much the same amount of code 😅).\n\n///",
+            "source": "deployment.docker",
+            "index": 39,
+            "heading": "Base Docker Image",
+            "start_line": 567,
+            "end_line": 584,
+            "revision": "79459189fdfac3a1c74c20ce2c464bf268de81c660bd92d866a9d74da607489a",
+            "chunk_id": "2aae5067e6ac84fd6a4f370e",
+            "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/deployment/docker.md",
+            "title": "FastAPI in Containers - Docker"
+          },
+          "score": -7.775930404663086,
+          "dense_score": 0.27255886793136597,
+          "bm25_score": 11.101753465789006,
+          "rerank_score": -7.775930404663086
+        },
+        {
+          "chunk": {
+            "text": "///\n\n/// tip\n\nIf you want to call `async` functions in your tests apart from sending requests to your FastAPI application (e.g. asynchronous database functions), have a look at the [Async Tests](../advanced/async-tests.md) in the advanced tutorial.\n\n///",
+            "source": "tutorial.testing",
+            "index": 2,
+            "heading": "Using `TestClient`",
+            "start_line": 50,
+            "end_line": 58,
+            "revision": "37dc11f563a570b5fb98cbe87d35f04d21db24e041e104d5d963131f1a5b1777",
+            "chunk_id": "7688009b007d60d0fbde290a",
+            "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/tutorial/testing.md",
+            "title": "Testing"
+          },
+          "score": -8.045209884643555,
+          "dense_score": 0.4716375470161438,
+          "bm25_score": 1.2103435280920103,
+          "rerank_score": -8.045209884643555
+        },
+        {
+          "chunk": {
+            "text": "## Recap { #recap }\n\nYou can use multiple worker processes with the `--workers` CLI option with the `fastapi` or `uvicorn` commands to take advantage of **multi-core CPUs**, to run **multiple processes in parallel**.\n\nYou could use these tools and ideas if you are setting up **your own deployment system** while taking care of the other deployment concepts yourself.\n\nCheck out the next chapter to learn about **FastAPI** with containers (e.g. Docker and Kubernetes). You will see that those tools have simple ways to solve the other **deployment concepts** as well. ✨",
+            "source": "deployment.server-workers",
+            "index": 9,
+            "heading": "Recap",
+            "start_line": 133,
+            "end_line": 139,
+            "revision": "729137055ca4112204922de4f421c5535a0cc4b592bafd5175e9a3942da046a7",
+            "chunk_id": "41b90e137390825d7ce5098d",
+            "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/deployment/server-workers.md",
+            "title": "Server Workers - Uvicorn with Workers"
+          },
+          "score": -8.155509948730469,
+          "dense_score": 0.39403390884399414,
+          "bm25_score": 7.9973402118071535,
+          "rerank_score": -8.155509948730469
+        }
+      ],
+      "timings": {
+        "snapshot_ms": 3.4575420431792736,
+        "retrieval_ms": 373.0595000088215,
+        "rerank_ms": 1572.0577909378335,
+        "total_ms": 3068.7045420054346,
+        "visible_chunks": 323,
+        "candidates": 20,
+        "generation_ms": 1119.4615410640836
+      },
+      "usage": {
+        "input_tokens": 349,
+        "output_tokens": 5,
+        "estimated": false,
+        "configured_currency_cost": null
+      },
+      "mechanical_review": {
+        "expected_status_met": true,
+        "forbidden_document_seen": [],
+        "forbidden_string_seen": false,
+        "citations_present_for_answer": true,
+        "boundary_pass": true,
+        "scope": "status and access boundaries only; not semantic answer accuracy"
+      },
+      "gold_retrieval": null,
+      "elapsed_ms": 3068.91612499021,
+      "human_review": {
+        "correct": null,
+        "all_claims_supported": null,
+        "notes": ""
+      },
+      "assistant_review": {
+        "reviewer": "Codex evidence review; not a human annotation",
+        "correct": true,
+        "all_claims_supported": null,
+        "language_matches_question": null,
+        "task_success": true,
+        "notes": "召回了相近技术文档，但证据没有题目所需版本或性能数字；模型拒答符合要求。"
+      }
+    },
+    {
+      "id": "H002",
+      "question": "What maximum requests per second does the supplied Celery section guarantee?",
+      "category": "near_domain_unanswerable",
+      "identity": "admin",
+      "expected_behavior": "abstain",
+      "evidence": [],
+      "review_rubric": "Only public technical docs are supplied. Related concepts and examples are present, but the requested version or measurement is absent. Abstain rather than inventing a number.",
+      "gold": [],
+      "answer": "当前证据不足以回答。",
+      "status": "abstained",
+      "reason": "LLM_NO_EVIDENCE",
+      "generation_mode": "compatible",
+      "claims": [],
+      "validation_failure": "",
+      "citations": [],
+      "retrieved": [
+        {
+          "chunk": {
+            "text": "* `expose_headers` - Indicate any response headers that should be made accessible to the browser. Defaults to `[]`.\n* `max_age` - Sets a maximum time in seconds for browsers to cache CORS responses. Defaults to `600`.\n\nThe middleware responds to two particular types of HTTP request...",
+            "source": "tutorial.cors",
+            "index": 6,
+            "heading": "Use `CORSMiddleware`",
+            "start_line": 63,
+            "end_line": 68,
+            "revision": "614c8fc7cb00d13244d68d95679bc2a236369e0c4dfd735d40ae024e01cfc7fd",
+            "chunk_id": "17390417d76341248442df37",
+            "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/tutorial/cors.md",
+            "title": "CORS (Cross-Origin Resource Sharing)"
+          },
+          "score": -9.942726135253906,
+          "dense_score": 0.4206809997558594,
+          "bm25_score": 6.641157698294525,
+          "rerank_score": -9.942726135253906
+        },
+        {
+          "chunk": {
+            "text": "### CORS preflight requests { #cors-preflight-requests }\n\nThese are any `OPTIONS` request with `Origin` and `Access-Control-Request-Method` headers.\n\nIn this case the middleware will intercept the incoming request and respond with appropriate CORS headers, and either a `200` or `400` response for informational purposes.",
+            "source": "tutorial.cors",
+            "index": 7,
+            "heading": "CORS preflight requests",
+            "start_line": 69,
+            "end_line": 74,
+            "revision": "614c8fc7cb00d13244d68d95679bc2a236369e0c4dfd735d40ae024e01cfc7fd",
+            "chunk_id": "9529f9cf1f03ec0639ced79e",
+            "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/tutorial/cors.md",
+            "title": "CORS (Cross-Origin Resource Sharing)"
+          },
+          "score": -10.963046073913574,
+          "dense_score": 0.30221834778785706,
+          "bm25_score": 3.671904395695998,
+          "rerank_score": -10.963046073913574
+        },
+        {
+          "chunk": {
+            "text": "## Caveat { #caveat }\n\nIf you need to perform heavy background computation and you don't necessarily need it to be run by the same process (for example, you don't need to share memory, variables, etc), you might benefit from using other bigger tools like [Celery](https://docs.celeryq.dev).\n\nThey tend to require more complex configurations, a message/job queue manager, like RabbitMQ or Redis, but they allow you to run background tasks in multiple processes, and especially, in multiple servers.\n\nBut if you need to access variables and objects from the same **FastAPI** app, or you need to perform small background tasks (like sending an email notification), you can simply just use `BackgroundTasks`.",
+            "source": "tutorial.background-tasks",
+            "index": 6,
+            "heading": "Caveat",
+            "start_line": 76,
+            "end_line": 83,
+            "revision": "0a1b1e7cd45fd71992684cb29993821ed8a6521b5edbc5495be8a3d4f9f47239",
+            "chunk_id": "d81fd6b50fe71017ba186b99",
+            "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/tutorial/background-tasks.md",
+            "title": "Background Tasks"
+          },
+          "score": -10.97315788269043,
+          "dense_score": 0.4754193425178528,
+          "bm25_score": 4.791905921508174,
+          "rerank_score": -10.97315788269043
+        },
+        {
+          "chunk": {
+            "text": "## Use Case { #use-case }\n\nLet's start with an example **use case** and then see how to solve it with this.\n\nLet's imagine that you have some **machine learning models** that you want to use to handle requests. 🤖\n\nThe same models are shared among requests, so, it's not one model per request, or one per user or something similar.\n\nLet's imagine that loading the model can **take quite some time**, because it has to read a lot of **data from disk**. So you don't want to do it for every request.\n\nYou could load it at the top level of the module/file, but that would also mean that it would **load the model** even if you are just running a simple automated test, then that test would be **slow** because it would have to wait for the model to load before being able to run an independent part of the code.\n\nThat's what we'll solve, let's load the model before the requests are handled, but only right before the application starts receiving requests, not while  the code is being loaded.",
+            "source": "advanced.events",
+            "index": 1,
+            "heading": "Use Case",
+            "start_line": 11,
+            "end_line": 24,
+            "revision": "c527c187df63ca50f1fc879af27d2ac987975f14cea85b1cc8fd85e3846a3129",
+            "chunk_id": "a5f8f946790a714c5be415a7",
+            "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/advanced/events.md",
+            "title": "Lifespan Events"
+          },
+          "score": -11.282316207885742,
+          "dense_score": 0.3042573928833008,
+          "bm25_score": 8.251171201196154,
+          "rerank_score": -11.282316207885742
+        },
+        {
+          "chunk": {
+            "text": "* `allow_origin_regex` - A regex string to match against origins that should be permitted to make cross-origin requests. e.g. `'https://.*\\.example\\.org'`.\n* `allow_methods` - A list of HTTP methods that should be allowed for cross-origin requests. Defaults to `['GET']`. You can use `['*']` to allow all standard methods.\n* `allow_headers` - A list of HTTP request headers that should be supported for cross-origin requests. Defaults to `[]`. You can use `['*']` to allow all headers. The `Accept`, `Accept-Language`, `Content-Language` and `Content-Type` headers are always allowed for [simple CORS requests](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#simple_requests).\n* `allow_credentials` - Indicate that cookies should be supported for cross-origin requests. Defaults to `False`.\n\n    None of `allow_origins`, `allow_methods` and `allow_headers` can be set to `['*']` if `allow_credentials` is set to `True`. All of them must be [explicitly specified](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#credentialed_requests_and_wildcards).\n\n* `expose_headers` - Indicate any response headers that should be made accessible to the browser. Defaults to `[]`.",
+            "source": "tutorial.cors",
+            "index": 5,
+            "heading": "Use `CORSMiddleware`",
+            "start_line": 57,
+            "end_line": 64,
+            "revision": "614c8fc7cb00d13244d68d95679bc2a236369e0c4dfd735d40ae024e01cfc7fd",
+            "chunk_id": "b697c95cde0eb7a700b7b650",
+            "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/tutorial/cors.md",
+            "title": "CORS (Cross-Origin Resource Sharing)"
+          },
+          "score": -11.309684753417969,
+          "dense_score": 0.23184910416603088,
+          "bm25_score": 4.660321597195927,
+          "rerank_score": -11.309684753417969
+        }
+      ],
+      "timings": {
+        "snapshot_ms": 9.633540990762413,
+        "retrieval_ms": 39.409250020980835,
+        "rerank_ms": 1262.5477920519188,
+        "total_ms": 2285.1696249563247,
+        "visible_chunks": 323,
+        "candidates": 20,
+        "generation_ms": 972.9990840423852
+      },
+      "usage": {
+        "input_tokens": 378,
+        "output_tokens": 5,
+        "estimated": false,
+        "configured_currency_cost": null
+      },
+      "mechanical_review": {
+        "expected_status_met": true,
+        "forbidden_document_seen": [],
+        "forbidden_string_seen": false,
+        "citations_present_for_answer": true,
+        "boundary_pass": true,
+        "scope": "status and access boundaries only; not semantic answer accuracy"
+      },
+      "gold_retrieval": null,
+      "elapsed_ms": 2285.327541991137,
+      "human_review": {
+        "correct": null,
+        "all_claims_supported": null,
+        "notes": ""
+      },
+      "assistant_review": {
+        "reviewer": "Codex evidence review; not a human annotation",
+        "correct": true,
+        "all_claims_supported": null,
+        "language_matches_question": null,
+        "task_success": true,
+        "notes": "召回了相近技术文档，但证据没有题目所需版本或性能数字；模型拒答符合要求。"
+      }
+    },
+    {
+      "id": "H003",
+      "question": "What exact numerical task-loss rate does this documentation guarantee for BackgroundTasks after process restarts?",
+      "category": "near_domain_unanswerable",
+      "identity": "admin",
+      "expected_behavior": "abstain",
+      "evidence": [],
+      "review_rubric": "Only public technical docs are supplied. Related concepts and examples are present, but the requested version or measurement is absent. Abstain rather than inventing a number.",
+      "gold": [],
+      "answer": "当前证据不足以回答。",
+      "status": "abstained",
+      "reason": "LLM_NO_EVIDENCE",
+      "generation_mode": "compatible",
+      "claims": [],
+      "validation_failure": "",
+      "citations": [],
+      "retrieved": [
+        {
+          "chunk": {
+            "text": "# Background Tasks { #background-tasks }\n\nYou can define background tasks to be run *after* returning a response.\n\nThis is useful for operations that need to happen after a request, but that the client doesn't really have to be waiting for the operation to complete before receiving the response.\n\nThis includes, for example:\n\n* Email notifications sent after performing an action:\n    * As connecting to an email server and sending an email tends to be \"slow\" (several seconds), you can return the response right away and send the email notification in the background.\n* Processing data:\n    * For example, let's say you receive a file that must go through a slow process, you can return a response of \"Accepted\" (HTTP 202) and process the file in the background.",
+            "source": "tutorial.background-tasks",
+            "index": 0,
+            "heading": "Background Tasks",
+            "start_line": 1,
+            "end_line": 13,
+            "revision": "0a1b1e7cd45fd71992684cb29993821ed8a6521b5edbc5495be8a3d4f9f47239",
+            "chunk_id": "41cdfe68a4feea0d4634a796",
+            "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/tutorial/background-tasks.md",
+            "title": "Background Tasks"
+          },
+          "score": -5.686896324157715,
+          "dense_score": 0.4684940576553345,
+          "bm25_score": 8.674188015743278,
+          "rerank_score": -5.686896324157715
+        },
+        {
+          "chunk": {
+            "text": "## Dependency Injection { #dependency-injection }\n\nUsing `BackgroundTasks` also works with the dependency injection system, you can declare a parameter of type `BackgroundTasks` at multiple levels: in a *path operation function*, in a dependency (dependable), in a sub-dependency, etc.\n\n**FastAPI** knows what to do in each case and how to reuse the same object, so that all the background tasks are merged together and are run in the background afterwards:\n\n\n{* ../../docs_src/background_tasks/tutorial002_an_py310.py hl[13,15,22,25] *}\n\n\nIn this example, the messages will be written to the `log.txt` file *after* the response is sent.\n\nIf there was a query in the request, it will be written to the log in a background task.\n\nAnd then another background task generated at the *path operation function* will write a message using the `email` path parameter.",
+            "source": "tutorial.background-tasks",
+            "index": 4,
+            "heading": "Dependency Injection",
+            "start_line": 48,
+            "end_line": 63,
+            "revision": "0a1b1e7cd45fd71992684cb29993821ed8a6521b5edbc5495be8a3d4f9f47239",
+            "chunk_id": "c1e6ff889448c7f3958f3175",
+            "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/tutorial/background-tasks.md",
+            "title": "Background Tasks"
+          },
+          "score": -6.464621067047119,
+          "dense_score": 0.41594839096069336,
+          "bm25_score": 8.59440266309235,
+          "rerank_score": -6.464621067047119
+        },
+        {
+          "chunk": {
+            "text": "## Recap { #recap }\n\nImport and use `BackgroundTasks` with parameters in *path operation functions* and dependencies to add background tasks.",
+            "source": "tutorial.background-tasks",
+            "index": 7,
+            "heading": "Recap",
+            "start_line": 84,
+            "end_line": 86,
+            "revision": "0a1b1e7cd45fd71992684cb29993821ed8a6521b5edbc5495be8a3d4f9f47239",
+            "chunk_id": "0016513276ff429810592e59",
+            "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/tutorial/background-tasks.md",
+            "title": "Background Tasks"
+          },
+          "score": -7.197626113891602,
+          "dense_score": 0.4405622184276581,
+          "bm25_score": 6.479392707772129,
+          "rerank_score": -7.197626113891602
+        },
+        {
+          "chunk": {
+            "text": "## Using `BackgroundTasks` { #using-backgroundtasks }\n\nFirst, import `BackgroundTasks` and define a parameter in your *path operation function* with a type declaration of `BackgroundTasks`:\n\n{* ../../docs_src/background_tasks/tutorial001_py310.py hl[1,13] *}\n\n**FastAPI** will create the object of type `BackgroundTasks` for you and pass it as that parameter.",
+            "source": "tutorial.background-tasks",
+            "index": 1,
+            "heading": "Using `BackgroundTasks`",
+            "start_line": 14,
+            "end_line": 21,
+            "revision": "0a1b1e7cd45fd71992684cb29993821ed8a6521b5edbc5495be8a3d4f9f47239",
+            "chunk_id": "40c315a59e35c9f8f732ca1d",
+            "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/tutorial/background-tasks.md",
+            "title": "Background Tasks"
+          },
+          "score": -7.900803565979004,
+          "dense_score": 0.41773855686187744,
+          "bm25_score": 8.357940260095088,
+          "rerank_score": -7.900803565979004
+        },
+        {
+          "chunk": {
+            "text": "## Caveat { #caveat }\n\nIf you need to perform heavy background computation and you don't necessarily need it to be run by the same process (for example, you don't need to share memory, variables, etc), you might benefit from using other bigger tools like [Celery](https://docs.celeryq.dev).\n\nThey tend to require more complex configurations, a message/job queue manager, like RabbitMQ or Redis, but they allow you to run background tasks in multiple processes, and especially, in multiple servers.\n\nBut if you need to access variables and objects from the same **FastAPI** app, or you need to perform small background tasks (like sending an email notification), you can simply just use `BackgroundTasks`.",
+            "source": "tutorial.background-tasks",
+            "index": 6,
+            "heading": "Caveat",
+            "start_line": 76,
+            "end_line": 83,
+            "revision": "0a1b1e7cd45fd71992684cb29993821ed8a6521b5edbc5495be8a3d4f9f47239",
+            "chunk_id": "d81fd6b50fe71017ba186b99",
+            "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/tutorial/background-tasks.md",
+            "title": "Background Tasks"
+          },
+          "score": -8.058924674987793,
+          "dense_score": 0.404529333114624,
+          "bm25_score": 5.899810359978913,
+          "rerank_score": -8.058924674987793
+        }
+      ],
+      "timings": {
+        "snapshot_ms": 9.77370806504041,
+        "retrieval_ms": 37.14199992828071,
+        "rerank_ms": 1102.381958044134,
+        "total_ms": 1791.4086249656975,
+        "visible_chunks": 323,
+        "candidates": 20,
+        "generation_ms": 641.5605840738863
+      },
+      "usage": {
+        "input_tokens": 854,
+        "output_tokens": 5,
+        "estimated": false,
+        "configured_currency_cost": null
+      },
+      "mechanical_review": {
+        "expected_status_met": true,
+        "forbidden_document_seen": [],
+        "forbidden_string_seen": false,
+        "citations_present_for_answer": true,
+        "boundary_pass": true,
+        "scope": "status and access boundaries only; not semantic answer accuracy"
+      },
+      "gold_retrieval": null,
+      "elapsed_ms": 1791.5664999745786,
+      "human_review": {
+        "correct": null,
+        "all_claims_supported": null,
+        "notes": ""
+      },
+      "assistant_review": {
+        "reviewer": "Codex evidence review; not a human annotation",
+        "correct": true,
+        "all_claims_supported": null,
+        "language_matches_question": null,
+        "task_success": true,
+        "notes": "召回了相近技术文档，但证据没有题目所需版本或性能数字；模型拒答符合要求。"
+      }
+    },
+    {
+      "id": "H004",
+      "question": "Which exact Redis version is required according to the supplied BackgroundTasks guide?",
+      "category": "near_domain_unanswerable",
+      "identity": "admin",
+      "expected_behavior": "abstain",
+      "evidence": [],
+      "review_rubric": "Only public technical docs are supplied. Related concepts and examples are present, but the requested version or measurement is absent. Abstain rather than inventing a number.",
+      "gold": [],
+      "answer": "当前证据不足以回答。",
+      "status": "abstained",
+      "reason": "LLM_NO_EVIDENCE",
+      "generation_mode": "compatible",
+      "claims": [],
+      "validation_failure": "",
+      "citations": [],
+      "retrieved": [
+        {
+          "chunk": {
+            "text": "## Caveat { #caveat }\n\nIf you need to perform heavy background computation and you don't necessarily need it to be run by the same process (for example, you don't need to share memory, variables, etc), you might benefit from using other bigger tools like [Celery](https://docs.celeryq.dev).\n\nThey tend to require more complex configurations, a message/job queue manager, like RabbitMQ or Redis, but they allow you to run background tasks in multiple processes, and especially, in multiple servers.\n\nBut if you need to access variables and objects from the same **FastAPI** app, or you need to perform small background tasks (like sending an email notification), you can simply just use `BackgroundTasks`.",
+            "source": "tutorial.background-tasks",
+            "index": 6,
+            "heading": "Caveat",
+            "start_line": 76,
+            "end_line": 83,
+            "revision": "0a1b1e7cd45fd71992684cb29993821ed8a6521b5edbc5495be8a3d4f9f47239",
+            "chunk_id": "d81fd6b50fe71017ba186b99",
+            "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/tutorial/background-tasks.md",
+            "title": "Background Tasks"
+          },
+          "score": -2.674036979675293,
+          "dense_score": 0.3283711075782776,
+          "bm25_score": 7.670196830046094,
+          "rerank_score": -2.674036979675293
+        },
+        {
+          "chunk": {
+            "text": "## Technical Details { #technical-details }\n\nThe class `BackgroundTasks` comes directly from [`starlette.background`](https://starlette.dev/background/).\n\nIt is imported/included directly into FastAPI so that you can import it from `fastapi` and avoid accidentally importing the alternative `BackgroundTask` (without the `s` at the end) from `starlette.background`.\n\nBy only using `BackgroundTasks` (and not `BackgroundTask`), it's then possible to use it as a *path operation function* parameter and have **FastAPI** handle the rest for you, just like when using the `Request` object directly.\n\nIt's still possible to use `BackgroundTask` alone in FastAPI, but you have to create the object in your code and return a Starlette `Response` including it.\n\nYou can see more details in [Starlette's official docs for Background Tasks](https://starlette.dev/background/).",
+            "source": "tutorial.background-tasks",
+            "index": 5,
+            "heading": "Technical Details",
+            "start_line": 64,
+            "end_line": 75,
+            "revision": "0a1b1e7cd45fd71992684cb29993821ed8a6521b5edbc5495be8a3d4f9f47239",
+            "chunk_id": "549141fee7863d88d2d819b6",
+            "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/tutorial/background-tasks.md",
+            "title": "Background Tasks"
+          },
+          "score": -4.965239524841309,
+          "dense_score": 0.41904664039611816,
+          "bm25_score": 5.272715653962296,
+          "rerank_score": -4.965239524841309
+        },
+        {
+          "chunk": {
+            "text": "## Recap { #recap }\n\nImport and use `BackgroundTasks` with parameters in *path operation functions* and dependencies to add background tasks.",
+            "source": "tutorial.background-tasks",
+            "index": 7,
+            "heading": "Recap",
+            "start_line": 84,
+            "end_line": 86,
+            "revision": "0a1b1e7cd45fd71992684cb29993821ed8a6521b5edbc5495be8a3d4f9f47239",
+            "chunk_id": "0016513276ff429810592e59",
+            "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/tutorial/background-tasks.md",
+            "title": "Background Tasks"
+          },
+          "score": -6.963742256164551,
+          "dense_score": 0.45110684633255005,
+          "bm25_score": 6.479392707772129,
+          "rerank_score": -6.963742256164551
+        },
+        {
+          "chunk": {
+            "text": "## Using `BackgroundTasks` { #using-backgroundtasks }\n\nFirst, import `BackgroundTasks` and define a parameter in your *path operation function* with a type declaration of `BackgroundTasks`:\n\n{* ../../docs_src/background_tasks/tutorial001_py310.py hl[1,13] *}\n\n**FastAPI** will create the object of type `BackgroundTasks` for you and pass it as that parameter.",
+            "source": "tutorial.background-tasks",
+            "index": 1,
+            "heading": "Using `BackgroundTasks`",
+            "start_line": 14,
+            "end_line": 21,
+            "revision": "0a1b1e7cd45fd71992684cb29993821ed8a6521b5edbc5495be8a3d4f9f47239",
+            "chunk_id": "40c315a59e35c9f8f732ca1d",
+            "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/tutorial/background-tasks.md",
+            "title": "Background Tasks"
+          },
+          "score": -7.286437511444092,
+          "dense_score": 0.3747929334640503,
+          "bm25_score": 8.357940260095088,
+          "rerank_score": -7.286437511444092
+        },
+        {
+          "chunk": {
+            "text": "## Dependency Injection { #dependency-injection }\n\nUsing `BackgroundTasks` also works with the dependency injection system, you can declare a parameter of type `BackgroundTasks` at multiple levels: in a *path operation function*, in a dependency (dependable), in a sub-dependency, etc.\n\n**FastAPI** knows what to do in each case and how to reuse the same object, so that all the background tasks are merged together and are run in the background afterwards:\n\n\n{* ../../docs_src/background_tasks/tutorial002_an_py310.py hl[13,15,22,25] *}\n\n\nIn this example, the messages will be written to the `log.txt` file *after* the response is sent.\n\nIf there was a query in the request, it will be written to the log in a background task.\n\nAnd then another background task generated at the *path operation function* will write a message using the `email` path parameter.",
+            "source": "tutorial.background-tasks",
+            "index": 4,
+            "heading": "Dependency Injection",
+            "start_line": 48,
+            "end_line": 63,
+            "revision": "0a1b1e7cd45fd71992684cb29993821ed8a6521b5edbc5495be8a3d4f9f47239",
+            "chunk_id": "c1e6ff889448c7f3958f3175",
+            "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/tutorial/background-tasks.md",
+            "title": "Background Tasks"
+          },
+          "score": -7.574618339538574,
+          "dense_score": 0.37319216132164,
+          "bm25_score": 5.466257517146869,
+          "rerank_score": -7.574618339538574
+        }
+      ],
+      "timings": {
+        "snapshot_ms": 11.367875034920871,
+        "retrieval_ms": 38.39054191485047,
+        "rerank_ms": 980.5582920089364,
+        "total_ms": 1608.3430829457939,
+        "visible_chunks": 323,
+        "candidates": 20,
+        "generation_ms": 577.4652089457959
+      },
+      "usage": {
+        "input_tokens": 719,
+        "output_tokens": 5,
+        "estimated": false,
+        "configured_currency_cost": null
+      },
+      "mechanical_review": {
+        "expected_status_met": true,
+        "forbidden_document_seen": [],
+        "forbidden_string_seen": false,
+        "citations_present_for_answer": true,
+        "boundary_pass": true,
+        "scope": "status and access boundaries only; not semantic answer accuracy"
+      },
+      "gold_retrieval": null,
+      "elapsed_ms": 1608.6039589717984,
+      "human_review": {
+        "correct": null,
+        "all_claims_supported": null,
+        "notes": ""
+      },
+      "assistant_review": {
+        "reviewer": "Codex evidence review; not a human annotation",
+        "correct": true,
+        "all_claims_supported": null,
+        "language_matches_question": null,
+        "task_success": true,
+        "notes": "召回了相近技术文档，但证据没有题目所需版本或性能数字；模型拒答符合要求。"
+      }
+    },
+    {
+      "id": "H005",
+      "question": "What exact concurrent WebSocket connection limit does the sample ConnectionManager benchmark demonstrate?",
+      "category": "near_domain_unanswerable",
+      "identity": "admin",
+      "expected_behavior": "abstain",
+      "evidence": [],
+      "review_rubric": "Only public technical docs are supplied. Related concepts and examples are present, but the requested version or measurement is absent. Abstain rather than inventing a number.",
+      "gold": [],
+      "answer": "当前证据不足以回答。",
+      "status": "abstained",
+      "reason": "LLM_NO_EVIDENCE",
+      "generation_mode": "compatible",
+      "claims": [],
+      "validation_failure": "",
+      "citations": [],
+      "retrieved": [
+        {
+          "chunk": {
+            "text": "## Handling disconnections and multiple clients { #handling-disconnections-and-multiple-clients }\n\nWhen a WebSocket connection is closed, the `await websocket.receive_text()` will raise a `WebSocketDisconnect` exception, which you can then catch and handle like in this example.\n\n{* ../../docs_src/websockets_/tutorial003_py310.py hl[79:81] *}\n\nTo try it out:\n\n* Open the app with several browser tabs.\n* Write messages from them.\n* Then close one of the tabs.\n\nThat will raise the `WebSocketDisconnect` exception, and all the other clients will receive a message like:\n\n```\nClient #1596980209979 left the chat\n```\n\n/// tip\n\nThe app above is a minimal and simple example to demonstrate how to handle and broadcast messages to several WebSocket connections.\n\nBut keep in mind that, as everything is handled in memory, in a single list, it will only work while the process is running, and will only work with a single process.\n\nIf you need something easy to integrate with FastAPI but that is more robust, supported by Redis, PostgreSQL or others, check [encode/broadcaster](https://github.com/encode/broadcaster).\n\n///",
+            "source": "advanced.websockets",
+            "index": 9,
+            "heading": "Handling disconnections and multiple clients",
+            "start_line": 153,
+            "end_line": 180,
+            "revision": "dd0c597fd2deee07e16488758636664c15b74de099098456ccf8f34c1d6a5a87",
+            "chunk_id": "713b8eae555b48bf340f4798",
+            "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/advanced/websockets.md",
+            "title": "WebSockets"
+          },
+          "score": -6.2419233322143555,
+          "dense_score": 0.4179322123527527,
+          "bm25_score": 11.743296791516464,
+          "rerank_score": -6.2419233322143555
+        },
+        {
+          "chunk": {
+            "text": "## WebSockets client { #websockets-client }",
+            "source": "advanced.websockets",
+            "index": 2,
+            "heading": "WebSockets client",
+            "start_line": 19,
+            "end_line": 20,
+            "revision": "dd0c597fd2deee07e16488758636664c15b74de099098456ccf8f34c1d6a5a87",
+            "chunk_id": "c9f823d259cbf4a874709143",
+            "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/advanced/websockets.md",
+            "title": "WebSockets"
+          },
+          "score": -8.547577857971191,
+          "dense_score": 0.39494097232818604,
+          "bm25_score": 0.0,
+          "rerank_score": -8.547577857971191
+        },
+        {
+          "chunk": {
+            "text": "# WebSockets { #websockets }\n\nYou can use [WebSockets](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API) with **FastAPI**.",
+            "source": "advanced.websockets",
+            "index": 0,
+            "heading": "WebSockets",
+            "start_line": 1,
+            "end_line": 4,
+            "revision": "dd0c597fd2deee07e16488758636664c15b74de099098456ccf8f34c1d6a5a87",
+            "chunk_id": "3df0f76a420fbbc07334430f",
+            "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/advanced/websockets.md",
+            "title": "WebSockets"
+          },
+          "score": -8.746444702148438,
+          "dense_score": 0.3820541501045227,
+          "bm25_score": 0.0,
+          "rerank_score": -8.746444702148438
+        },
+        {
+          "chunk": {
+            "text": "## Using `Depends` and others { #using-depends-and-others }\n\nIn WebSocket endpoints you can import from `fastapi` and use:\n\n* `Depends`\n* `Security`\n* `Cookie`\n* `Header`\n* `Path`\n* `Query`\n\nThey work the same way as for other FastAPI endpoints/*path operations*:\n\n{* ../../docs_src/websockets_/tutorial002_an_py310.py hl[68:69,82] *}\n\n/// note\n\nAs this is a WebSocket it doesn't really make sense to raise an `HTTPException`, instead we raise a `WebSocketException`.\n\nYou can use a closing code from the [valid codes defined in the specification](https://tools.ietf.org/html/rfc6455#section-7.4.1).\n\n///",
+            "source": "advanced.websockets",
+            "index": 7,
+            "heading": "Using `Depends` and others",
+            "start_line": 99,
+            "end_line": 121,
+            "revision": "dd0c597fd2deee07e16488758636664c15b74de099098456ccf8f34c1d6a5a87",
+            "chunk_id": "c23635abca818f3aa6ab4c73",
+            "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/advanced/websockets.md",
+            "title": "WebSockets"
+          },
+          "score": -8.984103202819824,
+          "dense_score": 0.32694947719573975,
+          "bm25_score": 5.270707301654912,
+          "rerank_score": -8.984103202819824
+        },
+        {
+          "chunk": {
+            "text": "## More info { #more-info }\n\nTo learn more about the options, check Starlette's documentation for:\n\n* [The `WebSocket` class](https://starlette.dev/websockets/).\n* [Class-based WebSocket handling](https://starlette.dev/endpoints/#websocketendpoint).",
+            "source": "advanced.websockets",
+            "index": 10,
+            "heading": "More info",
+            "start_line": 181,
+            "end_line": 186,
+            "revision": "dd0c597fd2deee07e16488758636664c15b74de099098456ccf8f34c1d6a5a87",
+            "chunk_id": "d3d426397c54ee09c0779419",
+            "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/advanced/websockets.md",
+            "title": "WebSockets"
+          },
+          "score": -9.082807540893555,
+          "dense_score": 0.31051158905029297,
+          "bm25_score": 6.476687273324059,
+          "rerank_score": -9.082807540893555
+        }
+      ],
+      "timings": {
+        "snapshot_ms": 11.545958928763866,
+        "retrieval_ms": 38.23362500406802,
+        "rerank_ms": 1037.434249999933,
+        "total_ms": 1505.859541008249,
+        "visible_chunks": 323,
+        "candidates": 20,
+        "generation_ms": 418.165749986656
+      },
+      "usage": {
+        "input_tokens": 499,
+        "output_tokens": 5,
+        "estimated": false,
+        "configured_currency_cost": null
+      },
+      "mechanical_review": {
+        "expected_status_met": true,
+        "forbidden_document_seen": [],
+        "forbidden_string_seen": false,
+        "citations_present_for_answer": true,
+        "boundary_pass": true,
+        "scope": "status and access boundaries only; not semantic answer accuracy"
+      },
+      "gold_retrieval": null,
+      "elapsed_ms": 1505.9877919266,
+      "human_review": {
+        "correct": null,
+        "all_claims_supported": null,
+        "notes": ""
+      },
+      "assistant_review": {
+        "reviewer": "Codex evidence review; not a human annotation",
+        "correct": true,
+        "all_claims_supported": null,
+        "language_matches_question": null,
+        "task_success": true,
+        "notes": "召回了相近技术文档，但证据没有题目所需版本或性能数字；模型拒答符合要求。"
+      }
+    },
+    {
+      "id": "H006",
+      "question": "What exact JWT verification time in milliseconds does this documentation measure?",
+      "category": "near_domain_unanswerable",
+      "identity": "admin",
+      "expected_behavior": "abstain",
+      "evidence": [],
+      "review_rubric": "Only public technical docs are supplied. Related concepts and examples are present, but the requested version or measurement is absent. Abstain rather than inventing a number.",
+      "gold": [],
+      "answer": "当前证据不足以回答。",
+      "status": "abstained",
+      "reason": "LLM_NO_EVIDENCE",
+      "generation_mode": "compatible",
+      "claims": [],
+      "validation_failure": "",
+      "citations": [],
+      "retrieved": [
+        {
+          "chunk": {
+            "text": "## About JWT { #about-jwt }\n\nJWT means \"JSON Web Tokens\".\n\nIt's a standard to codify a JSON object in a long dense string without spaces. It looks like this:\n\n```\neyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c\n```\n\nIt is not encrypted, so, anyone could recover the information from the contents.\n\nBut it's signed. So, when you receive a token that you issued, you can verify that it was you who issued it.\n\nThat way, you can create a token with an expiration of, let's say, 1 week. And then when the user comes back the next day with the token, you know that user is still logged in to your system.\n\nAfter a week, the token will be expired and the user will not be authorized and will have to sign in again to get a new token. And if the user (or a third party) tried to modify the token to change the expiration, you would be able to discover it, because the signatures would not match.\n\nIf you want to play with JWT tokens and see how they work, check [https://jwt.io](https://jwt.io/).",
+            "source": "tutorial.security.oauth2-jwt",
+            "index": 1,
+            "heading": "About JWT",
+            "start_line": 9,
+            "end_line": 28,
+            "revision": "a9d5bb34fa6e46129959d7b11b2eefb6672e50c0a2b90a2edb457d2f4920f39a",
+            "chunk_id": "d7a92e1700479c5221eaebec",
+            "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/tutorial/security/oauth2-jwt.md",
+            "title": "OAuth2 with Password (and hashing), Bearer with JWT tokens"
+          },
+          "score": -4.877123832702637,
+          "dense_score": 0.5689148902893066,
+          "bm25_score": 5.374432471694836,
+          "rerank_score": -4.877123832702637
+        },
+        {
+          "chunk": {
+            "text": "## Update the `/token` *path operation* { #update-the-token-path-operation }\n\nCreate a `timedelta` with the expiration time of the token.\n\nCreate a real JWT access token and return it.\n\n{* ../../docs_src/security/tutorial004_an_py310.py hl[121:136] *}",
+            "source": "tutorial.security.oauth2-jwt",
+            "index": 10,
+            "heading": "Update the `/token` *path operation*",
+            "start_line": 171,
+            "end_line": 178,
+            "revision": "a9d5bb34fa6e46129959d7b11b2eefb6672e50c0a2b90a2edb457d2f4920f39a",
+            "chunk_id": "0db71191704340ccbe8335c2",
+            "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/tutorial/security/oauth2-jwt.md",
+            "title": "OAuth2 with Password (and hashing), Bearer with JWT tokens"
+          },
+          "score": -6.622214317321777,
+          "dense_score": 0.3974599838256836,
+          "bm25_score": 8.303986719871407,
+          "rerank_score": -6.622214317321777
+        },
+        {
+          "chunk": {
+            "text": "## Update the dependencies { #update-the-dependencies }\n\nUpdate `get_current_user` to receive the same token as before, but this time, using JWT tokens.\n\nDecode the received token, verify it, and return the current user.\n\nIf the token is invalid, return an HTTP error right away.\n\n{* ../../docs_src/security/tutorial004_an_py310.py hl[93:110] *}",
+            "source": "tutorial.security.oauth2-jwt",
+            "index": 9,
+            "heading": "Update the dependencies",
+            "start_line": 161,
+            "end_line": 170,
+            "revision": "a9d5bb34fa6e46129959d7b11b2eefb6672e50c0a2b90a2edb457d2f4920f39a",
+            "chunk_id": "6416070d50e7e86f61387136",
+            "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/tutorial/security/oauth2-jwt.md",
+            "title": "OAuth2 with Password (and hashing), Bearer with JWT tokens"
+          },
+          "score": -6.721830368041992,
+          "dense_score": 0.21852780878543854,
+          "bm25_score": 8.450127857256446,
+          "rerank_score": -6.721830368041992
+        },
+        {
+          "chunk": {
+            "text": "## Install `PyJWT` { #install-pyjwt }\n\nWe need to install `PyJWT` to generate and verify the JWT tokens in Python.\n\nAdd `pyjwt` to your project:\n\n<div class=\"termy\">\n\n```console\n$ uv add pyjwt\n\n---> 100%\n```\n\n</div>\n\n/// note\n\nIf you are planning to use digital signature algorithms like RSA or ECDSA, you should install the cryptography library dependency `pyjwt[crypto]`.\n\nYou can read more about it in the [PyJWT Installation docs](https://pyjwt.readthedocs.io/en/latest/installation.html).\n\n///",
+            "source": "tutorial.security.oauth2-jwt",
+            "index": 2,
+            "heading": "Install `PyJWT`",
+            "start_line": 29,
+            "end_line": 52,
+            "revision": "a9d5bb34fa6e46129959d7b11b2eefb6672e50c0a2b90a2edb457d2f4920f39a",
+            "chunk_id": "616364a7398badc8fc8be700",
+            "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/tutorial/security/oauth2-jwt.md",
+            "title": "OAuth2 with Password (and hashing), Bearer with JWT tokens"
+          },
+          "score": -8.13219165802002,
+          "dense_score": 0.3941643238067627,
+          "bm25_score": 3.7986902205446773,
+          "rerank_score": -8.13219165802002
+        },
+        {
+          "chunk": {
+            "text": "### Technical details about the JWT \"subject\" `sub` { #technical-details-about-the-jwt-subject-sub }\n\nThe JWT specification says that there's a key `sub`, with the subject of the token.\n\nIt's optional to use it, but that's where you would put the user's identification, so we are using it here.\n\nJWT might be used for other things apart from identifying a user and allowing them to perform operations directly on your API.\n\nFor example, you could identify a \"car\" or a \"blog post\".\n\nThen you could add permissions about that entity, like \"drive\" (for the car) or \"edit\" (for the blog).\n\nAnd then, you could give that JWT token to a user (or bot), and they could use it to perform those actions (drive the car, or edit the blog post) without even needing to have an account, just with the JWT token your API generated for that.\n\nUsing these ideas, JWT can be used for way more sophisticated scenarios.\n\nIn those cases, several of those entities could have the same ID, let's say `foo` (a user `foo`, a car `foo`, and a blog post `foo`).",
+            "source": "tutorial.security.oauth2-jwt",
+            "index": 11,
+            "heading": "Technical details about the JWT \"subject\" `sub`",
+            "start_line": 179,
+            "end_line": 196,
+            "revision": "a9d5bb34fa6e46129959d7b11b2eefb6672e50c0a2b90a2edb457d2f4920f39a",
+            "chunk_id": "36727f67ba017bdd8bb795f6",
+            "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/tutorial/security/oauth2-jwt.md",
+            "title": "OAuth2 with Password (and hashing), Bearer with JWT tokens"
+          },
+          "score": -8.386762619018555,
+          "dense_score": 0.41073906421661377,
+          "bm25_score": 6.03830792748674,
+          "rerank_score": -8.386762619018555
+        }
+      ],
+      "timings": {
+        "snapshot_ms": 8.842583047226071,
+        "retrieval_ms": 32.72474999539554,
+        "rerank_ms": 1165.4342919355258,
+        "total_ms": 1768.9030419569463,
+        "visible_chunks": 323,
+        "candidates": 20,
+        "generation_ms": 561.4157080417499
+      },
+      "usage": {
+        "input_tokens": 1035,
+        "output_tokens": 5,
+        "estimated": false,
+        "configured_currency_cost": null
+      },
+      "mechanical_review": {
+        "expected_status_met": true,
+        "forbidden_document_seen": [],
+        "forbidden_string_seen": false,
+        "citations_present_for_answer": true,
+        "boundary_pass": true,
+        "scope": "status and access boundaries only; not semantic answer accuracy"
+      },
+      "gold_retrieval": null,
+      "elapsed_ms": 1769.0665839472786,
+      "human_review": {
+        "correct": null,
+        "all_claims_supported": null,
+        "notes": ""
+      },
+      "assistant_review": {
+        "reviewer": "Codex evidence review; not a human annotation",
+        "correct": true,
+        "all_claims_supported": null,
+        "language_matches_question": null,
+        "task_success": true,
+        "notes": "召回了相近技术文档，但证据没有题目所需版本或性能数字；模型拒答符合要求。"
+      }
+    }
+  ],
+  "scope": "live generation; curated development set; human review separate"
+}

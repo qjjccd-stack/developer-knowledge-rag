@@ -1,0 +1,21 @@
+{
+  "created_at": "2026-10-12T03:24:01.443897+00:00",
+  "scope": "local repair source snapshot; no Git commit",
+  "sha256": {
+    "app/rag/generation.py": "7ff5f343e804dfda80fc59e61e0b286d7ec679ab614971d8304d6e4a760352ea",
+    "app/rag/evidence.py": "c2ba479dac6efb063ea70ddbd4c54a3f3226f8dc29344f603f6885038be528e6",
+    "app/rag/language.py": "aed33b024db60a081d478103bb0c2d961a7e6d6720a5b904150e62e193a412b5",
+    "app/rag/pipeline.py": "0f1ea087f6c31bb9f06d81e12d06134a149952589c89af457fbf50468b7f6c9d",
+    "app/api/routes.py": "7f543bd3286188fa936c2f0f01dd850b0830d33edaf25a53203c453e991a998d",
+    "app/config.py": "d2dc522854c1689dccfd86e2bbc477a37148ded67a92f19d4cded3208d8d53db",
+    "eval/run_answers.py": "ad1353b9637205a967406f191b31610d8eedddafe4c3b703d248150500e42dd7",
+    "eval/repair_validation.json": "ac4cd772cc1463c81ba515f5a4fe9415d1fdae543ea3be709a17646488c2d90c",
+    "scripts/fetch_code_examples.py": "cf3f210ea8194ac285afcc3b4bcbefe76a7986affd1c506880aef02edbdd021f",
+    "scripts/ingest.py": "609fe37ad51c8986ceed900bb0efee0ded9d72b8758780cedac197d740d93cb3",
+    "scripts/verify_container.py": "86fb26629143aab3169dc121ca594212ddc6026dbccd5de1977bec8792fe7208",
+    "scripts/explain_functions.py": "c273bc53d17636457955726f9ca76bef6e5bb5d6fe1ba1b5f99f005656613d1b",
+    "tests/test_answer_repairs.py": "727fd144a63a305b64ebd9aa8fd2888f4f213c62fffd9f86e5f52048fb87394c",
+    "requirements.lock.txt": "3237c8b4ff9f2ce8ac39c977a38600d8ba308ae62cedca467a3dd29e80a891a5",
+    "pyproject.toml": "307c4973608315c060f90d7a13be7b3ad609de467cd3e8e53edb1bb2d6873213"
+  }
+}

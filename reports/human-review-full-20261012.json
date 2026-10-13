@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "source_report": "answer-review-full-20261012.json",
+  "source_report_sha256": "9d9c33903e9e039d4c2185a5803d0258f62655bd3ae8bae178004bc3451558ac",
+  "dataset_sha256": "d6da22268c9c979fa3172f094c31bd38f97fabdfd94c3be91a3834e0489a0ffd",
+  "model": "deepseek-chat",
+  "reviewer_role": "author",
+  "created_at": "2026-10-12T07:41:59.109316+00:00",
+  "updated_at": "2026-10-12T08:54:05.339436+00:00",
+  "summary": {
+    "total": 50,
+    "reviewed": 3,
+    "pending": 47,
+    "fully_reviewed": false,
+    "task_successes": 3,
+    "task_success_rate_full_set": null,
+    "task_success_rate_reviewed_subset": 1.0,
+    "supported_answer_rate": null,
+    "author_reviewed": 3,
+    "independent_third_party_reviewed": 0,
+    "scope": "manual reviewer input; author review is not independent third-party annotation"
+  },
+  "scores": {
+    "Q001": {
+      "reviewer_name": "项目作者",
+      "correct": true,
+      "complete": true,
+      "all_claims_supported": true,
+      "language_matches_question": true,
+      "permission_respected": true,
+      "notes": "",
+      "task_success": true,
+      "automatic_boundary_pass": true,
+      "reviewed_at": "2026-10-12T08:49:26.884018+00:00"
+    },
+    "Q002": {
+      "reviewer_name": "项目作者",
+      "correct": true,
+      "complete": true,
+      "all_claims_supported": true,
+      "language_matches_question": true,
+      "permission_respected": true,
+      "notes": "",
+      "task_success": true,
+      "automatic_boundary_pass": true,
+      "reviewed_at": "2026-10-12T08:52:01.188406+00:00"
+    },
+    "Q003": {
+      "reviewer_name": "项目作者",
+      "correct": true,
+      "complete": true,
+      "all_claims_supported": true,
+      "language_matches_question": true,
+      "permission_respected": true,
+      "notes": "",
+      "task_success": true,
+      "automatic_boundary_pass": true,
+      "reviewed_at": "2026-10-12T08:54:05.339208+00:00"
+    }
+  }
+}

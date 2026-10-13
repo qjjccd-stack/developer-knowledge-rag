@@ -1,0 +1,11 @@
+.env
+.venv
+.git
+__pycache__
+data/models
+data/*.sqlite3*
+tests
+.tools
+.container-runtime
+reports
+deploy/*.env

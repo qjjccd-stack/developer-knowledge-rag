@@ -1,0 +1,410 @@
+{
+  "schema_version": 1,
+  "annotation": "Questions and evidence spans manually selected from pinned official docs; curated development set, not a blind test.",
+  "cases": [
+    {
+      "id": "Q001",
+      "question": "When are FastAPI background tasks executed?",
+      "category": "single_evidence",
+      "evidence": [
+        {
+          "doc_id": "tutorial.background-tasks",
+          "quote": "You can define background tasks to be run *after* returning a response.",
+          "source_line": 3
+        }
+      ]
+    },
+    {
+      "id": "Q002",
+      "question": "When should I use Celery rather than BackgroundTasks for heavy computation?",
+      "category": "single_evidence",
+      "evidence": [
+        {
+          "doc_id": "tutorial.background-tasks",
+          "quote": "If you need to perform heavy background computation and you don't necessarily need it to be run by the same process (for example, you don't need to share memory, variables, etc), you might benefit from using other bigger tools like [Celery](https://docs.celeryq.dev).",
+          "source_line": 78
+        }
+      ]
+    },
+    {
+      "id": "Q003",
+      "question": "What should I use for a small email task sharing objects with the same FastAPI app?",
+      "category": "single_evidence",
+      "evidence": [
+        {
+          "doc_id": "tutorial.background-tasks",
+          "quote": "But if you need to access variables and objects from the same **FastAPI** app, or you need to perform small background tasks (like sending an email notification), you can simply just use `BackgroundTasks`.",
+          "source_line": 82
+        }
+      ]
+    },
+    {
+      "id": "Q004",
+      "question": "What three components define a CORS origin?",
+      "category": "single_evidence",
+      "evidence": [
+        {
+          "doc_id": "tutorial.cors",
+          "quote": "An origin is the combination of protocol (`http`, `https`), domain (`myapp.com`, `localhost`, `localhost.tiangolo.com`), and port (`80`, `443`, `8080`).",
+          "source_line": 7
+        }
+      ]
+    },
+    {
+      "id": "Q005",
+      "question": "Can I enable CORS credentials while keeping origins, methods and headers as wildcards?",
+      "category": "single_evidence",
+      "evidence": [
+        {
+          "doc_id": "tutorial.cors",
+          "quote": "None of `allow_origins`, `allow_methods` and `allow_headers` can be set to `['*']` if `allow_credentials` is set to `True`. All of them must be [explicitly specified](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#credentialed_requests_and_wildcards).",
+          "source_line": 62
+        }
+      ]
+    },
+    {
+      "id": "Q006",
+      "question": "Which headers make an OPTIONS request a CORS preflight?",
+      "category": "single_evidence",
+      "evidence": [
+        {
+          "doc_id": "tutorial.cors",
+          "quote": "These are any `OPTIONS` request with `Origin` and `Access-Control-Request-Method` headers.",
+          "source_line": 71
+        }
+      ]
+    },
+    {
+      "id": "Q007",
+      "question": "Where should model loading happen relative to yield in the lifespan function?",
+      "category": "single_evidence",
+      "evidence": [
+        {
+          "doc_id": "advanced.events",
+          "quote": "Here we are simulating the expensive *startup* operation of loading the model by putting the (fake) model function in the dictionary with machine learning models before the `yield`. This code will be executed **before** the application **starts taking requests**, during the *startup*.",
+          "source_line": 35
+        }
+      ]
+    },
+    {
+      "id": "Q008",
+      "question": "Can I use startup event handlers together with a lifespan parameter?",
+      "category": "single_evidence",
+      "evidence": [
+        {
+          "doc_id": "advanced.events",
+          "quote": "The recommended way to handle the *startup* and *shutdown* is using the `lifespan` parameter of the `FastAPI` app as described above. If you provide a `lifespan` parameter, `startup` and `shutdown` event handlers will no longer be called. It's all `lifespan` or all events, not both.",
+          "source_line": 91
+        }
+      ]
+    },
+    {
+      "id": "Q009",
+      "question": "Which application attribute replaces dependencies in tests?",
+      "category": "single_evidence",
+      "evidence": [
+        {
+          "doc_id": "advanced.testing-dependencies",
+          "quote": "For these cases, your **FastAPI** application has an attribute `app.dependency_overrides`, it is a simple `dict`.",
+          "source_line": 25
+        }
+      ]
+    },
+    {
+      "id": "Q010",
+      "question": "How do I clear dependency overrides after tests?",
+      "category": "single_evidence",
+      "evidence": [
+        {
+          "doc_id": "advanced.testing-dependencies",
+          "quote": "Then you can reset your overrides (remove them) by setting `app.dependency_overrides` to be an empty `dict`:",
+          "source_line": 43
+        }
+      ]
+    },
+    {
+      "id": "Q011",
+      "question": "What exception is raised by receive_text when a WebSocket client disconnects?",
+      "category": "single_evidence",
+      "evidence": [
+        {
+          "doc_id": "advanced.websockets",
+          "quote": "When a WebSocket connection is closed, the `await websocket.receive_text()` will raise a `WebSocketDisconnect` exception, which you can then catch and handle like in this example.",
+          "source_line": 155
+        }
+      ]
+    },
+    {
+      "id": "Q012",
+      "question": "Will the example in-memory WebSocket connection list work across multiple worker processes?",
+      "category": "single_evidence",
+      "evidence": [
+        {
+          "doc_id": "advanced.websockets",
+          "quote": "But keep in mind that, as everything is handled in memory, in a single list, it will only work while the process is running, and will only work with a single process.",
+          "source_line": 175
+        }
+      ]
+    },
+    {
+      "id": "Q013",
+      "question": "How does FastAPI execute a normal def route to avoid blocking its server?",
+      "category": "single_evidence",
+      "evidence": [
+        {
+          "doc_id": "async",
+          "quote": "When you declare a *path operation function* with normal `def` instead of `async def`, it is run in an external threadpool that is then awaited, instead of being called directly (as it would block the server).",
+          "source_line": 418
+        }
+      ]
+    },
+    {
+      "id": "Q014",
+      "question": "Where is await allowed in Python functions?",
+      "category": "single_evidence",
+      "evidence": [
+        {
+          "doc_id": "async",
+          "quote": "You can only use `await` inside of functions created with `async def`.",
+          "source_line": 26
+        }
+      ]
+    },
+    {
+      "id": "Q015",
+      "question": "Why copy dependency requirements before application source code in Docker builds?",
+      "category": "single_evidence",
+      "evidence": [
+        {
+          "doc_id": "deployment.docker",
+          "quote": "The file with the package requirements **won't change frequently**. So, by copying only that file, Docker will be able to **use the cache** for that step.",
+          "source_line": 298
+        }
+      ]
+    },
+    {
+      "id": "Q016",
+      "question": "What CLI option allows Uvicorn to use multiple CPU cores with worker processes?",
+      "category": "single_evidence",
+      "evidence": [
+        {
+          "doc_id": "deployment.server-workers",
+          "quote": "You can use multiple worker processes with the `--workers` CLI option with the `fastapi` or `uvicorn` commands to take advantage of **multi-core CPUs**, to run **multiple processes in parallel**.",
+          "source_line": 135
+        }
+      ]
+    },
+    {
+      "id": "Q017",
+      "question": "Should I return HTTPException or raise it?",
+      "category": "single_evidence",
+      "evidence": [
+        {
+          "doc_id": "tutorial.handling-errors",
+          "quote": "Because it's a Python exception, you don't `return` it, you `raise` it.",
+          "source_line": 34
+        }
+      ]
+    },
+    {
+      "id": "Q018",
+      "question": "What does a status code in the 400 range indicate?",
+      "category": "single_evidence",
+      "evidence": [
+        {
+          "doc_id": "tutorial.handling-errors",
+          "quote": "The status codes in the 400 range mean that there was an error from the client.",
+          "source_line": 18
+        }
+      ]
+    },
+    {
+      "id": "Q019",
+      "question": "How do I declare a request body with validation in FastAPI?",
+      "category": "single_evidence",
+      "evidence": [
+        {
+          "doc_id": "tutorial.body",
+          "quote": "To declare a **request** body, you use [Pydantic](https://pydantic.dev/docs/) models with all their power and benefits.",
+          "source_line": 9
+        }
+      ]
+    },
+    {
+      "id": "Q020",
+      "question": "What makes a request parameter optional: a union with None or its default value?",
+      "category": "single_evidence",
+      "evidence": [
+        {
+          "doc_id": "tutorial.body",
+          "quote": "The `str | None` is not used by FastAPI to determine that the value is not required, it will know it's not required because it has a default value of `= None`.",
+          "source_line": 158
+        }
+      ]
+    },
+    {
+      "id": "Q021",
+      "question": "How can a dependency create a database session and close it afterward?",
+      "category": "multi_evidence",
+      "evidence": [
+        {
+          "doc_id": "tutorial.dependencies.dependencies-with-yield",
+          "quote": "For example, you could use this to create a database session and close it after finishing.",
+          "source_line": 28
+        },
+        {
+          "doc_id": "tutorial.dependencies.dependencies-with-yield",
+          "quote": "To do this, use `yield` instead of `return`, and write the extra steps (code) after.",
+          "source_line": 5
+        }
+      ]
+    },
+    {
+      "id": "Q022",
+      "question": "Can async dependencies be used in normal def endpoints and vice versa?",
+      "category": "single_evidence",
+      "evidence": [
+        {
+          "doc_id": "tutorial.dependencies.index",
+          "quote": "And you can declare dependencies with `async def` inside of normal `def` *path operation functions*, or `def` dependencies inside of `async def` *path operation functions*, etc.",
+          "source_line": 149
+        }
+      ]
+    },
+    {
+      "id": "Q023",
+      "question": "How can I completely disable OpenAPI and its documentation interfaces?",
+      "category": "single_evidence",
+      "evidence": [
+        {
+          "doc_id": "tutorial.metadata",
+          "quote": "If you want to disable the OpenAPI schema completely you can set `openapi_url=None`, that will also disable the documentation user interfaces that use it.",
+          "source_line": 105
+        }
+      ]
+    },
+    {
+      "id": "Q024",
+      "question": "What maximum string length does the query validation example enforce?",
+      "category": "single_evidence",
+      "evidence": [
+        {
+          "doc_id": "tutorial.query-params-str-validations",
+          "quote": "We are going to enforce that even though `q` is optional, whenever it is provided, **its length doesn't exceed 50 characters**.",
+          "source_line": 21
+        }
+      ]
+    },
+    {
+      "id": "Q025",
+      "question": "Why use gt instead of ge when validating a positive float smaller than one?",
+      "category": "single_evidence",
+      "evidence": [
+        {
+          "doc_id": "tutorial.path-params-numeric-validations",
+          "quote": "Here's where it becomes important to be able to declare <abbr title=\"greater than\"><code>gt</code></abbr> and not just <abbr title=\"greater than or equal\"><code>ge</code></abbr>. As with it you can require, for example, that a value must be greater than `0`, even if it is less than `1`.",
+          "source_line": 115
+        }
+      ]
+    },
+    {
+      "id": "Q026",
+      "question": "Which path operation parameter defines response models and filters private output data?",
+      "category": "single_evidence",
+      "evidence": [
+        {
+          "doc_id": "tutorial.response-model",
+          "quote": "Use the *path operation decorator's* parameter `response_model` to define response models and especially to ensure private data is filtered out.",
+          "source_line": 342
+        }
+      ]
+    },
+    {
+      "id": "Q027",
+      "question": "Are JWT contents encrypted or just signed?",
+      "category": "multi_evidence",
+      "evidence": [
+        {
+          "doc_id": "tutorial.security.oauth2-jwt",
+          "quote": "It is not encrypted, so, anyone could recover the information from the contents.",
+          "source_line": 19
+        },
+        {
+          "doc_id": "tutorial.security.oauth2-jwt",
+          "quote": "But it's signed. So, when you receive a token that you issued, you can verify that it was you who issued it.",
+          "source_line": 21
+        }
+      ]
+    },
+    {
+      "id": "Q028",
+      "question": "How do I create a TestClient for a FastAPI app?",
+      "category": "single_evidence",
+      "evidence": [
+        {
+          "doc_id": "tutorial.testing",
+          "quote": "Create a `TestClient` by passing your **FastAPI** application to it.",
+          "source_line": 25
+        }
+      ]
+    },
+    {
+      "id": "Q029",
+      "question": "When adding several middleware layers which one becomes outermost?",
+      "category": "single_evidence",
+      "evidence": [
+        {
+          "doc_id": "tutorial.middleware",
+          "quote": "When you add multiple middlewares using either `@app.middleware()` decorator or `app.add_middleware()` method, each new middleware wraps the application, forming a stack. The last middleware added is the *outermost*, and the first is the *innermost*.",
+          "source_line": 70
+        }
+      ]
+    },
+    {
+      "id": "Q030",
+      "question": "Which CLI option controls which proxy IP addresses may supply forwarded headers?",
+      "category": "single_evidence",
+      "evidence": [
+        {
+          "doc_id": "advanced.behind-a-proxy",
+          "quote": "You can start FastAPI CLI with the *CLI Option* `--forwarded-allow-ips` and pass the IP addresses that should be trusted to read those forwarded headers.",
+          "source_line": 27
+        }
+      ]
+    },
+    {
+      "id": "Q031",
+      "question": "Which component runs small background tasks, and do these tasks run before or after middleware?",
+      "category": "multi_evidence",
+      "evidence": [
+        {
+          "doc_id": "tutorial.background-tasks",
+          "quote": "But if you need to access variables and objects from the same **FastAPI** app, or you need to perform small background tasks (like sending an email notification), you can simply just use `BackgroundTasks`.",
+          "source_line": 82
+        },
+        {
+          "doc_id": "tutorial.middleware",
+          "quote": "If there were any background tasks (covered in the [Background Tasks](background-tasks.md) section, you will see it later), they will run *after* all the middleware.",
+          "source_line": 18
+        }
+      ]
+    },
+    {
+      "id": "Q032",
+      "question": "How do I add multiple Uvicorn workers, and is the in-memory WebSocket broadcast example compatible with them?",
+      "category": "multi_evidence",
+      "evidence": [
+        {
+          "doc_id": "deployment.server-workers",
+          "quote": "You can use multiple worker processes with the `--workers` CLI option with the `fastapi` or `uvicorn` commands to take advantage of **multi-core CPUs**, to run **multiple processes in parallel**.",
+          "source_line": 135
+        },
+        {
+          "doc_id": "advanced.websockets",
+          "quote": "But keep in mind that, as everything is handled in memory, in a single list, it will only work while the process is running, and will only work with a single process.",
+          "source_line": 175
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,972 @@
+{
+  "created_at": "2026-10-12T03:00:34.759227+00:00",
+  "dataset_sha256": "d6da22268c9c979fa3172f094c31bd38f97fabdfd94c3be91a3834e0489a0ffd",
+  "snapshot_sha256": "152305e4433dbf46d3009fdf9c5b91a7d026a23c6af7bc058e13e342ef714b38",
+  "model": "deepseek-chat",
+  "configuration": {
+    "citation_contract": "span-id-v2",
+    "context_max_chunks": 8,
+    "max_generation_attempts": 2,
+    "repeat": 2,
+    "min_dense_score": 0.35
+  },
+  "requested": 2,
+  "summary": {
+    "cases": 2,
+    "live_responses_with_usage": 2,
+    "input_tokens": 6630,
+    "output_tokens": 1304,
+    "groups": {
+      "answerable": {
+        "cases": 2,
+        "errors": 0,
+        "boundary_passes": 1
+      }
+    },
+    "human_reviewed": 0,
+    "assistant_reviewed": 0
+  },
+  "rows": [
+    {
+      "id": "Q028.r1",
+      "question": "How do I create a TestClient for a FastAPI app?",
+      "category": "answerable",
+      "evidence": [
+        {
+          "doc_id": "tutorial.testing",
+          "quote": "Create a `TestClient` by passing your **FastAPI** application to it.",
+          "source_line": 25
+        }
+      ],
+      "identity": "admin",
+      "expected_behavior": "answer_from_evidence",
+      "review_rubric": "Use the labeled passage as a reference; equivalent evidence is allowed. Every claim must be supported by its cited passage.",
+      "base_id": "Q028",
+      "repeat": 0,
+      "gold": [
+        {
+          "doc_id": "tutorial.testing",
+          "quote": "Create a `TestClient` by passing your **FastAPI** application to it.",
+          "source_line": 25
+        }
+      ],
+      "answer": "To use TestClient, first install httpx, for example with the command uv add httpx. [3]\n\nImport TestClient from fastapi.testclient, then create a TestClient by passing your FastAPI application to it, as in client = TestClient(app). [1] [3]\n\nWrite test functions whose names start with test_ and use the TestClient object the same way as httpx, with normal def functions and normal calls rather than async def or await, so pytest can be used directly. [3]\n\nA test can call the client, for example response = client.get(\"/\"), and then assert on the response, such as response.status_code == 200 and response.json() == {\"msg\": \"Hello World\"}. [1]\n\nFastAPI provides the same starlette.testclient as fastapi.testclient as a convenience, so you could also use from starlette.testclient import TestClient. [3]",
+      "status": "answered",
+      "reason": "",
+      "generation_mode": "compatible",
+      "claims": [
+        {
+          "text": "To use TestClient, first install httpx, for example with the command uv add httpx.",
+          "evidence": [
+            {
+              "id": 3,
+              "quote": "To use `TestClient`, first install [`httpx`](https://www.python-httpx.org)."
+            },
+            {
+              "id": 3,
+              "quote": "```console\n$ uv add httpx\n```"
+            }
+          ]
+        },
+        {
+          "text": "Import TestClient from fastapi.testclient, then create a TestClient by passing your FastAPI application to it, as in client = TestClient(app).",
+          "evidence": [
+            {
+              "id": 1,
+              "quote": "from fastapi import FastAPI\nfrom fastapi.testclient import TestClient"
+            },
+            {
+              "id": 3,
+              "quote": "Create a `TestClient` by passing your **FastAPI** application to it."
+            },
+            {
+              "id": 1,
+              "quote": "client = TestClient(app)"
+            }
+          ]
+        },
+        {
+          "text": "Write test functions whose names start with test_ and use the TestClient object the same way as httpx, with normal def functions and normal calls rather than async def or await, so pytest can be used directly.",
+          "evidence": [
+            {
+              "id": 3,
+              "quote": "Create functions with a name that starts with `test_` (this is a standard `pytest` convention)."
+            },
+            {
+              "id": 3,
+              "quote": "Use the `TestClient` object the same way as you do with `httpx`."
+            },
+            {
+              "id": 3,
+              "quote": "Notice that the testing functions are normal `def`, not `async def`."
+            }
+          ]
+        },
+        {
+          "text": "A test can call the client, for example response = client.get(\"/\"), and then assert on the response, such as response.status_code == 200 and response.json() == {\"msg\": \"Hello World\"}.",
+          "evidence": [
+            {
+              "id": 1,
+              "quote": "def test_read_main():\n    response = client.get(\"/\")\n    assert response.status_code == 200\n    assert response.json() == {\"msg\": \"Hello World\"}"
+            }
+          ]
+        },
+        {
+          "text": "FastAPI provides the same starlette.testclient as fastapi.testclient as a convenience, so you could also use from starlette.testclient import TestClient.",
+          "evidence": [
+            {
+              "id": 3,
+              "quote": "You could also use `from starlette.testclient import TestClient`."
+            },
+            {
+              "id": 3,
+              "quote": "**FastAPI** provides the same `starlette.testclient` as `fastapi.testclient` just as a convenience for you, the developer. But it comes directly from Starlette."
+            }
+          ]
+        }
+      ],
+      "validation_failure": "",
+      "answer_language": "en",
+      "language_check": {
+        "expected": "en",
+        "detected": "en",
+        "confidence": 0.9999951658086479,
+        "decision": "matched"
+      },
+      "generation_attempts": [
+        {
+          "attempt": 1,
+          "finish_reason": "stop",
+          "input_tokens": 1471,
+          "output_tokens": 333,
+          "result": "rejected",
+          "failure_code": "INVALID_SCHEMA",
+          "language_check": {},
+          "schema_errors": [
+            {
+              "location": [
+                "claims",
+                1,
+                "evidence"
+              ],
+              "type": "too_long"
+            },
+            {
+              "location": [
+                "claims",
+                2,
+                "evidence"
+              ],
+              "type": "too_long"
+            }
+          ]
+        },
+        {
+          "attempt": 2,
+          "finish_reason": "stop",
+          "input_tokens": 1845,
+          "output_tokens": 315,
+          "result": "accepted",
+          "language_check": {
+            "expected": "en",
+            "detected": "en",
+            "confidence": 0.9999951658086479,
+            "decision": "matched"
+          }
+        }
+      ],
+      "citation_contract": "span-id-v2",
+      "context_selection": [
+        {
+          "chunk_id": "f278f0795011ce038ccc272b",
+          "source": "code.app_testing.tutorial001_py310",
+          "lines": [
+            1,
+            18
+          ],
+          "reason": "exact_identifier",
+          "anchor_chunk_id": null
+        },
+        {
+          "chunk_id": "eda67ff7447cf495e83a9b9c",
+          "source": "tutorial.testing",
+          "lines": [
+            1,
+            8
+          ],
+          "reason": "exact_identifier",
+          "anchor_chunk_id": null
+        },
+        {
+          "chunk_id": "94cfc71e43a33e363f904c35",
+          "source": "tutorial.testing",
+          "lines": [
+            9,
+            54
+          ],
+          "reason": "relevance_anchor",
+          "anchor_chunk_id": null
+        },
+        {
+          "chunk_id": "aab03569dc7b158987bc34f7",
+          "source": "deployment.docker",
+          "lines": [
+            137,
+            158
+          ],
+          "reason": "relevance_anchor",
+          "anchor_chunk_id": null
+        },
+        {
+          "chunk_id": "e301f097bcc2223e58101b40",
+          "source": "advanced.behind-a-proxy",
+          "lines": [
+            219,
+            226
+          ],
+          "reason": "relevance_anchor",
+          "anchor_chunk_id": null
+        }
+      ],
+      "context": [
+        {
+          "chunk": {
+            "text": "from fastapi import FastAPI\nfrom fastapi.testclient import TestClient\n\napp = FastAPI()\n\n\n@app.get(\"/\")\nasync def read_main():\n    return {\"msg\": \"Hello World\"}\n\n\nclient = TestClient(app)\n\n\ndef test_read_main():\n    response = client.get(\"/\")\n    assert response.status_code == 200\n    assert response.json() == {\"msg\": \"Hello World\"}",
+            "source": "code.app_testing.tutorial001_py310",
+            "index": 0,
+            "heading": "",
+            "start_line": 1,
+            "end_line": 18,
+            "revision": "43ccda7d34b1964d4ec733ca7113e6a798b6d2e21786515cd62e3ea119993c16",
+            "chunk_id": "f278f0795011ce038ccc272b",
+            "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs_src/app_testing/tutorial001_py310.py",
+            "title": "FastAPI TestClient complete example"
+          },
+          "score": 0,
+          "dense_score": null,
+          "bm25_score": null,
+          "rerank_score": null
+        },
+        {
+          "chunk": {
+            "text": "# Testing { #testing }\n\nThanks to [Starlette](https://starlette.dev/testclient/), testing **FastAPI** applications is easy and enjoyable.\n\nIt is based on [HTTPX](https://www.python-httpx.org), which in turn is designed based on Requests, so it's very familiar and intuitive.\n\nWith it, you can use [pytest](https://docs.pytest.org/) directly with **FastAPI**.",
+            "source": "tutorial.testing",
+            "index": 0,
+            "heading": "Testing",
+            "start_line": 1,
+            "end_line": 8,
+            "revision": "37dc11f563a570b5fb98cbe87d35f04d21db24e041e104d5d963131f1a5b1777",
+            "chunk_id": "eda67ff7447cf495e83a9b9c",
+            "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/tutorial/testing.md",
+            "title": "Testing"
+          },
+          "score": 0,
+          "dense_score": null,
+          "bm25_score": null,
+          "rerank_score": null
+        },
+        {
+          "chunk": {
+            "text": "## Using `TestClient` { #using-testclient }\n\n/// note\n\nTo use `TestClient`, first install [`httpx`](https://www.python-httpx.org).\n\nAdd it to your project:\n\n```console\n$ uv add httpx\n```\n\n///\n\nImport `TestClient`.\n\nCreate a `TestClient` by passing your **FastAPI** application to it.\n\nCreate functions with a name that starts with `test_` (this is a standard `pytest` convention).\n\nUse the `TestClient` object the same way as you do with `httpx`.\n\nWrite simple `assert` statements with the standard Python expressions that you need to check (again, standard `pytest`).\n\n{* ../../docs_src/app_testing/tutorial001_py310.py hl[2,12,15:18] *}\n\n/// tip\n\nNotice that the testing functions are normal `def`, not `async def`.\n\nAnd the calls to the client are also normal calls, not using `await`.\n\nThis allows you to use `pytest` directly without complications.\n\n///\n\n/// note | Technical Details\n\nYou could also use `from starlette.testclient import TestClient`.\n\n**FastAPI** provides the same `starlette.testclient` as `fastapi.testclient` just as a convenience for you, the developer. But it comes directly from Starlette.\n\n///\n\n/// tip",
+            "source": "tutorial.testing",
+            "index": 1,
+            "heading": "Using `TestClient`",
+            "start_line": 9,
+            "end_line": 54,
+            "revision": "37dc11f563a570b5fb98cbe87d35f04d21db24e041e104d5d963131f1a5b1777",
+            "chunk_id": "94cfc71e43a33e363f904c35",
+            "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/tutorial/testing.md",
+            "title": "Testing"
+          },
+          "score": 7.684736251831055,
+          "dense_score": 0.5650160908699036,
+          "bm25_score": 11.103460524978072,
+          "rerank_score": 7.684736251831055
+        },
+        {
+          "chunk": {
+            "text": "### Create the **FastAPI** Code { #create-the-fastapi-code }\n\n* Create an `app` directory and enter it.\n* Create an empty file `__init__.py`.\n* Create a `main.py` file with:\n\n```Python\nfrom fastapi import FastAPI\n\napp = FastAPI()\n\n\n@app.get(\"/\")\ndef read_root():\n    return {\"Hello\": \"World\"}\n\n\n@app.get(\"/items/{item_id}\")\ndef read_item(item_id: int, q: str | None = None):\n    return {\"item_id\": item_id, \"q\": q}\n```",
+            "source": "deployment.docker",
+            "index": 9,
+            "heading": "Create the **FastAPI** Code",
+            "start_line": 137,
+            "end_line": 158,
+            "revision": "79459189fdfac3a1c74c20ce2c464bf268de81c660bd92d866a9d74da607489a",
+            "chunk_id": "aab03569dc7b158987bc34f7",
+            "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/deployment/docker.md",
+            "title": "FastAPI in Containers - Docker"
+          },
+          "score": 3.332724094390869,
+          "dense_score": 0.4945642650127411,
+          "bm25_score": 9.530974721289796,
+          "rerank_score": 3.332724094390869
+        },
+        {
+          "chunk": {
+            "text": "### Setting the `root_path` in the FastAPI app { #setting-the-root-path-in-the-fastapi-app }\n\nAlternatively, if you don't have a way to provide a command line option like `--root-path` or equivalent, you can set the `root_path` parameter when creating your FastAPI app:\n\n{* ../../docs_src/behind_a_proxy/tutorial002_py310.py hl[3] *}\n\nPassing the `root_path` to `FastAPI` would be the equivalent of passing the `--root-path` command line option to Uvicorn or Hypercorn.",
+            "source": "advanced.behind-a-proxy",
+            "index": 11,
+            "heading": "Setting the `root_path` in the FastAPI app",
+            "start_line": 219,
+            "end_line": 226,
+            "revision": "2cb3e7376db409d0936e1da4e839436f249d72e08c7e2654ddfb3b1748a94351",
+            "chunk_id": "e301f097bcc2223e58101b40",
+            "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/advanced/behind-a-proxy.md",
+            "title": "Behind a Proxy"
+          },
+          "score": 3.159308433532715,
+          "dense_score": 0.5168712139129639,
+          "bm25_score": 4.8509919645894595,
+          "rerank_score": 3.159308433532715
+        }
+      ],
+      "citations": [
+        {
+          "id": 1,
+          "text": "from fastapi import FastAPI\nfrom fastapi.testclient import TestClient\n\napp = FastAPI()\n\n\n@app.get(\"/\")\nasync def read_main():\n    return {\"msg\": \"Hello World\"}\n\n\nclient = TestClient(app)\n\n\ndef test_read_main():\n    response = client.get(\"/\")\n    assert response.status_code == 200\n    assert response.json() == {\"msg\": \"Hello World\"}",
+          "source": "code.app_testing.tutorial001_py310",
+          "index": 0,
+          "heading": "",
+          "start_line": 1,
+          "end_line": 18,
+          "revision": "43ccda7d34b1964d4ec733ca7113e6a798b6d2e21786515cd62e3ea119993c16",
+          "chunk_id": "f278f0795011ce038ccc272b",
+          "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs_src/app_testing/tutorial001_py310.py",
+          "title": "FastAPI TestClient complete example"
+        },
+        {
+          "id": 3,
+          "text": "## Using `TestClient` { #using-testclient }\n\n/// note\n\nTo use `TestClient`, first install [`httpx`](https://www.python-httpx.org).\n\nAdd it to your project:\n\n```console\n$ uv add httpx\n```\n\n///\n\nImport `TestClient`.\n\nCreate a `TestClient` by passing your **FastAPI** application to it.\n\nCreate functions with a name that starts with `test_` (this is a standard `pytest` convention).\n\nUse the `TestClient` object the same way as you do with `httpx`.\n\nWrite simple `assert` statements with the standard Python expressions that you need to check (again, standard `pytest`).\n\n{* ../../docs_src/app_testing/tutorial001_py310.py hl[2,12,15:18] *}\n\n/// tip\n\nNotice that the testing functions are normal `def`, not `async def`.\n\nAnd the calls to the client are also normal calls, not using `await`.\n\nThis allows you to use `pytest` directly without complications.\n\n///\n\n/// note | Technical Details\n\nYou could also use `from starlette.testclient import TestClient`.\n\n**FastAPI** provides the same `starlette.testclient` as `fastapi.testclient` just as a convenience for you, the developer. But it comes directly from Starlette.\n\n///\n\n/// tip",
+          "source": "tutorial.testing",
+          "index": 1,
+          "heading": "Using `TestClient`",
+          "start_line": 9,
+          "end_line": 54,
+          "revision": "37dc11f563a570b5fb98cbe87d35f04d21db24e041e104d5d963131f1a5b1777",
+          "chunk_id": "94cfc71e43a33e363f904c35",
+          "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/tutorial/testing.md",
+          "title": "Testing"
+        }
+      ],
+      "retrieved": [
+        {
+          "chunk": {
+            "text": "## Using `TestClient` { #using-testclient }\n\n/// note\n\nTo use `TestClient`, first install [`httpx`](https://www.python-httpx.org).\n\nAdd it to your project:\n\n```console\n$ uv add httpx\n```\n\n///\n\nImport `TestClient`.\n\nCreate a `TestClient` by passing your **FastAPI** application to it.\n\nCreate functions with a name that starts with `test_` (this is a standard `pytest` convention).\n\nUse the `TestClient` object the same way as you do with `httpx`.\n\nWrite simple `assert` statements with the standard Python expressions that you need to check (again, standard `pytest`).\n\n{* ../../docs_src/app_testing/tutorial001_py310.py hl[2,12,15:18] *}\n\n/// tip\n\nNotice that the testing functions are normal `def`, not `async def`.\n\nAnd the calls to the client are also normal calls, not using `await`.\n\nThis allows you to use `pytest` directly without complications.\n\n///\n\n/// note | Technical Details\n\nYou could also use `from starlette.testclient import TestClient`.\n\n**FastAPI** provides the same `starlette.testclient` as `fastapi.testclient` just as a convenience for you, the developer. But it comes directly from Starlette.\n\n///\n\n/// tip",
+            "source": "tutorial.testing",
+            "index": 1,
+            "heading": "Using `TestClient`",
+            "start_line": 9,
+            "end_line": 54,
+            "revision": "37dc11f563a570b5fb98cbe87d35f04d21db24e041e104d5d963131f1a5b1777",
+            "chunk_id": "94cfc71e43a33e363f904c35",
+            "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/tutorial/testing.md",
+            "title": "Testing"
+          },
+          "score": 7.684736251831055,
+          "dense_score": 0.5650160908699036,
+          "bm25_score": 11.103460524978072,
+          "rerank_score": 7.684736251831055
+        },
+        {
+          "chunk": {
+            "text": "from fastapi import FastAPI\nfrom fastapi.testclient import TestClient\n\napp = FastAPI()\n\n\n@app.get(\"/\")\nasync def read_main():\n    return {\"msg\": \"Hello World\"}\n\n\nclient = TestClient(app)\n\n\ndef test_read_main():\n    response = client.get(\"/\")\n    assert response.status_code == 200\n    assert response.json() == {\"msg\": \"Hello World\"}",
+            "source": "code.app_testing.tutorial001_py310",
+            "index": 0,
+            "heading": "",
+            "start_line": 1,
+            "end_line": 18,
+            "revision": "43ccda7d34b1964d4ec733ca7113e6a798b6d2e21786515cd62e3ea119993c16",
+            "chunk_id": "f278f0795011ce038ccc272b",
+            "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs_src/app_testing/tutorial001_py310.py",
+            "title": "FastAPI TestClient complete example"
+          },
+          "score": 6.2966814041137695,
+          "dense_score": 0.7039981484413147,
+          "bm25_score": 12.296638469766886,
+          "rerank_score": 6.2966814041137695
+        },
+        {
+          "chunk": {
+            "text": "# Testing { #testing }\n\nThanks to [Starlette](https://starlette.dev/testclient/), testing **FastAPI** applications is easy and enjoyable.\n\nIt is based on [HTTPX](https://www.python-httpx.org), which in turn is designed based on Requests, so it's very familiar and intuitive.\n\nWith it, you can use [pytest](https://docs.pytest.org/) directly with **FastAPI**.",
+            "source": "tutorial.testing",
+            "index": 0,
+            "heading": "Testing",
+            "start_line": 1,
+            "end_line": 8,
+            "revision": "37dc11f563a570b5fb98cbe87d35f04d21db24e041e104d5d963131f1a5b1777",
+            "chunk_id": "eda67ff7447cf495e83a9b9c",
+            "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/tutorial/testing.md",
+            "title": "Testing"
+          },
+          "score": 4.016937255859375,
+          "dense_score": 0.6003981232643127,
+          "bm25_score": 6.807796886536277,
+          "rerank_score": 4.016937255859375
+        },
+        {
+          "chunk": {
+            "text": "### Create the **FastAPI** Code { #create-the-fastapi-code }\n\n* Create an `app` directory and enter it.\n* Create an empty file `__init__.py`.\n* Create a `main.py` file with:\n\n```Python\nfrom fastapi import FastAPI\n\napp = FastAPI()\n\n\n@app.get(\"/\")\ndef read_root():\n    return {\"Hello\": \"World\"}\n\n\n@app.get(\"/items/{item_id}\")\ndef read_item(item_id: int, q: str | None = None):\n    return {\"item_id\": item_id, \"q\": q}\n```",
+            "source": "deployment.docker",
+            "index": 9,
+            "heading": "Create the **FastAPI** Code",
+            "start_line": 137,
+            "end_line": 158,
+            "revision": "79459189fdfac3a1c74c20ce2c464bf268de81c660bd92d866a9d74da607489a",
+            "chunk_id": "aab03569dc7b158987bc34f7",
+            "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/deployment/docker.md",
+            "title": "FastAPI in Containers - Docker"
+          },
+          "score": 3.332724094390869,
+          "dense_score": 0.4945642650127411,
+          "bm25_score": 9.530974721289796,
+          "rerank_score": 3.332724094390869
+        },
+        {
+          "chunk": {
+            "text": "### Setting the `root_path` in the FastAPI app { #setting-the-root-path-in-the-fastapi-app }\n\nAlternatively, if you don't have a way to provide a command line option like `--root-path` or equivalent, you can set the `root_path` parameter when creating your FastAPI app:\n\n{* ../../docs_src/behind_a_proxy/tutorial002_py310.py hl[3] *}\n\nPassing the `root_path` to `FastAPI` would be the equivalent of passing the `--root-path` command line option to Uvicorn or Hypercorn.",
+            "source": "advanced.behind-a-proxy",
+            "index": 11,
+            "heading": "Setting the `root_path` in the FastAPI app",
+            "start_line": 219,
+            "end_line": 226,
+            "revision": "2cb3e7376db409d0936e1da4e839436f249d72e08c7e2654ddfb3b1748a94351",
+            "chunk_id": "e301f097bcc2223e58101b40",
+            "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/advanced/behind-a-proxy.md",
+            "title": "Behind a Proxy"
+          },
+          "score": 3.159308433532715,
+          "dense_score": 0.5168712139129639,
+          "bm25_score": 4.8509919645894595,
+          "rerank_score": 3.159308433532715
+        }
+      ],
+      "timings": {
+        "snapshot_ms": 4.655999946407974,
+        "retrieval_ms": 27.436999953351915,
+        "rerank_ms": 1359.8294589901343,
+        "total_ms": 5899.438709020615,
+        "visible_chunks": 326,
+        "candidates": 20,
+        "generation_ms": 4491.596041014418
+      },
+      "usage": {
+        "input_tokens": 3316,
+        "output_tokens": 648,
+        "estimated": false,
+        "configured_currency_cost": null
+      },
+      "mechanical_review": {
+        "expected_status_met": true,
+        "forbidden_document_seen": [],
+        "forbidden_string_seen": false,
+        "citations_present_for_answer": true,
+        "boundary_pass": true,
+        "scope": "status and access boundaries only; not semantic answer accuracy"
+      },
+      "gold_retrieval": {
+        "evidence_recall_at_k": 1.0,
+        "any_gold_at_k": 1.0,
+        "all_gold_at_k": 1.0,
+        "mrr_at_k": 1.0
+      },
+      "elapsed_ms": 5899.794875062071,
+      "generation_diagnostics": [
+        {
+          "attempt": 1,
+          "finish_reason": "stop",
+          "input_tokens": 1471,
+          "output_tokens": 333,
+          "result": "rejected",
+          "failure_code": "INVALID_SCHEMA",
+          "language_check": {},
+          "schema_errors": [
+            {
+              "location": [
+                "claims",
+                1,
+                "evidence"
+              ],
+              "type": "too_long"
+            },
+            {
+              "location": [
+                "claims",
+                2,
+                "evidence"
+              ],
+              "type": "too_long"
+            }
+          ],
+          "raw_draft": "{\"language\":\"en\",\"claims\":[{\"text\":\"To use TestClient, first install httpx, for example with the command uv add httpx.\",\"evidence\":[{\"id\":3,\"span_id\":2},{\"id\":3,\"span_id\":4}]},{\"text\":\"Import TestClient from fastapi.testclient, then create a TestClient by passing your FastAPI application to it, as in client = TestClient(app).\",\"evidence\":[{\"id\":1,\"span_id\":1},{\"id\":3,\"span_id\":5},{\"id\":3,\"span_id\":6},{\"id\":1,\"span_id\":4}]},{\"text\":\"Write test functions whose names start with test_ and use the TestClient object the same way as httpx, with normal def functions and normal calls rather than async def or await, so pytest can be used directly.\",\"evidence\":[{\"id\":3,\"span_id\":7},{\"id\":3,\"span_id\":8},{\"id\":3,\"span_id\":10},{\"id\":3,\"span_id\":11}]},{\"text\":\"A test can call the client, for example response = client.get(\\\"/\\\"), and then assert on the response, such as response.status_code == 200 and response.json() == {\\\"msg\\\": \\\"Hello World\\\"}.\",\"evidence\":[{\"id\":1,\"span_id\":5}]},{\"text\":\"FastAPI provides the same starlette.testclient as fastapi.testclient as a convenience, so you could also use from starlette.testclient import TestClient.\",\"evidence\":[{\"id\":3,\"span_id\":14},{\"id\":3,\"span_id\":15}]}]}"
+        }
+      ],
+      "human_review": {
+        "correct": null,
+        "all_claims_supported": null,
+        "notes": ""
+      },
+      "assistant_review": {
+        "correct": null,
+        "all_claims_supported": null,
+        "notes": ""
+      }
+    },
+    {
+      "id": "Q028.r2",
+      "question": "How do I create a TestClient for a FastAPI app?",
+      "category": "answerable",
+      "evidence": [
+        {
+          "doc_id": "tutorial.testing",
+          "quote": "Create a `TestClient` by passing your **FastAPI** application to it.",
+          "source_line": 25
+        }
+      ],
+      "identity": "admin",
+      "expected_behavior": "answer_from_evidence",
+      "review_rubric": "Use the labeled passage as a reference; equivalent evidence is allowed. Every claim must be supported by its cited passage.",
+      "base_id": "Q028",
+      "repeat": 1,
+      "gold": [
+        {
+          "doc_id": "tutorial.testing",
+          "quote": "Create a `TestClient` by passing your **FastAPI** application to it.",
+          "source_line": 25
+        }
+      ],
+      "answer": "The generated answer failed citation or language checks.",
+      "status": "abstained",
+      "reason": "INVALID_CITATION",
+      "generation_mode": "compatible",
+      "claims": [],
+      "validation_failure": "INVALID_SCHEMA",
+      "answer_language": "en",
+      "language_check": {},
+      "generation_attempts": [
+        {
+          "attempt": 1,
+          "finish_reason": "stop",
+          "input_tokens": 1471,
+          "output_tokens": 331,
+          "result": "rejected",
+          "failure_code": "INVALID_SCHEMA",
+          "language_check": {},
+          "schema_errors": [
+            {
+              "location": [
+                "claims",
+                1,
+                "evidence"
+              ],
+              "type": "too_long"
+            },
+            {
+              "location": [
+                "claims",
+                2,
+                "evidence"
+              ],
+              "type": "too_long"
+            },
+            {
+              "location": [
+                "claims",
+                3,
+                "evidence"
+              ],
+              "type": "too_long"
+            }
+          ]
+        },
+        {
+          "attempt": 2,
+          "finish_reason": "stop",
+          "input_tokens": 1843,
+          "output_tokens": 325,
+          "result": "rejected",
+          "failure_code": "INVALID_SCHEMA",
+          "language_check": {},
+          "schema_errors": [
+            {
+              "location": [
+                "claims",
+                1,
+                "evidence"
+              ],
+              "type": "too_long"
+            },
+            {
+              "location": [
+                "claims",
+                2,
+                "evidence"
+              ],
+              "type": "too_long"
+            },
+            {
+              "location": [
+                "claims",
+                3,
+                "evidence"
+              ],
+              "type": "too_long"
+            }
+          ]
+        }
+      ],
+      "citation_contract": "span-id-v2",
+      "context_selection": [
+        {
+          "chunk_id": "f278f0795011ce038ccc272b",
+          "source": "code.app_testing.tutorial001_py310",
+          "lines": [
+            1,
+            18
+          ],
+          "reason": "exact_identifier",
+          "anchor_chunk_id": null
+        },
+        {
+          "chunk_id": "eda67ff7447cf495e83a9b9c",
+          "source": "tutorial.testing",
+          "lines": [
+            1,
+            8
+          ],
+          "reason": "exact_identifier",
+          "anchor_chunk_id": null
+        },
+        {
+          "chunk_id": "94cfc71e43a33e363f904c35",
+          "source": "tutorial.testing",
+          "lines": [
+            9,
+            54
+          ],
+          "reason": "relevance_anchor",
+          "anchor_chunk_id": null
+        },
+        {
+          "chunk_id": "aab03569dc7b158987bc34f7",
+          "source": "deployment.docker",
+          "lines": [
+            137,
+            158
+          ],
+          "reason": "relevance_anchor",
+          "anchor_chunk_id": null
+        },
+        {
+          "chunk_id": "e301f097bcc2223e58101b40",
+          "source": "advanced.behind-a-proxy",
+          "lines": [
+            219,
+            226
+          ],
+          "reason": "relevance_anchor",
+          "anchor_chunk_id": null
+        }
+      ],
+      "context": [
+        {
+          "chunk": {
+            "text": "from fastapi import FastAPI\nfrom fastapi.testclient import TestClient\n\napp = FastAPI()\n\n\n@app.get(\"/\")\nasync def read_main():\n    return {\"msg\": \"Hello World\"}\n\n\nclient = TestClient(app)\n\n\ndef test_read_main():\n    response = client.get(\"/\")\n    assert response.status_code == 200\n    assert response.json() == {\"msg\": \"Hello World\"}",
+            "source": "code.app_testing.tutorial001_py310",
+            "index": 0,
+            "heading": "",
+            "start_line": 1,
+            "end_line": 18,
+            "revision": "43ccda7d34b1964d4ec733ca7113e6a798b6d2e21786515cd62e3ea119993c16",
+            "chunk_id": "f278f0795011ce038ccc272b",
+            "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs_src/app_testing/tutorial001_py310.py",
+            "title": "FastAPI TestClient complete example"
+          },
+          "score": 0,
+          "dense_score": null,
+          "bm25_score": null,
+          "rerank_score": null
+        },
+        {
+          "chunk": {
+            "text": "# Testing { #testing }\n\nThanks to [Starlette](https://starlette.dev/testclient/), testing **FastAPI** applications is easy and enjoyable.\n\nIt is based on [HTTPX](https://www.python-httpx.org), which in turn is designed based on Requests, so it's very familiar and intuitive.\n\nWith it, you can use [pytest](https://docs.pytest.org/) directly with **FastAPI**.",
+            "source": "tutorial.testing",
+            "index": 0,
+            "heading": "Testing",
+            "start_line": 1,
+            "end_line": 8,
+            "revision": "37dc11f563a570b5fb98cbe87d35f04d21db24e041e104d5d963131f1a5b1777",
+            "chunk_id": "eda67ff7447cf495e83a9b9c",
+            "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/tutorial/testing.md",
+            "title": "Testing"
+          },
+          "score": 0,
+          "dense_score": null,
+          "bm25_score": null,
+          "rerank_score": null
+        },
+        {
+          "chunk": {
+            "text": "## Using `TestClient` { #using-testclient }\n\n/// note\n\nTo use `TestClient`, first install [`httpx`](https://www.python-httpx.org).\n\nAdd it to your project:\n\n```console\n$ uv add httpx\n```\n\n///\n\nImport `TestClient`.\n\nCreate a `TestClient` by passing your **FastAPI** application to it.\n\nCreate functions with a name that starts with `test_` (this is a standard `pytest` convention).\n\nUse the `TestClient` object the same way as you do with `httpx`.\n\nWrite simple `assert` statements with the standard Python expressions that you need to check (again, standard `pytest`).\n\n{* ../../docs_src/app_testing/tutorial001_py310.py hl[2,12,15:18] *}\n\n/// tip\n\nNotice that the testing functions are normal `def`, not `async def`.\n\nAnd the calls to the client are also normal calls, not using `await`.\n\nThis allows you to use `pytest` directly without complications.\n\n///\n\n/// note | Technical Details\n\nYou could also use `from starlette.testclient import TestClient`.\n\n**FastAPI** provides the same `starlette.testclient` as `fastapi.testclient` just as a convenience for you, the developer. But it comes directly from Starlette.\n\n///\n\n/// tip",
+            "source": "tutorial.testing",
+            "index": 1,
+            "heading": "Using `TestClient`",
+            "start_line": 9,
+            "end_line": 54,
+            "revision": "37dc11f563a570b5fb98cbe87d35f04d21db24e041e104d5d963131f1a5b1777",
+            "chunk_id": "94cfc71e43a33e363f904c35",
+            "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/tutorial/testing.md",
+            "title": "Testing"
+          },
+          "score": 7.684736251831055,
+          "dense_score": 0.5650160908699036,
+          "bm25_score": 11.103460524978072,
+          "rerank_score": 7.684736251831055
+        },
+        {
+          "chunk": {
+            "text": "### Create the **FastAPI** Code { #create-the-fastapi-code }\n\n* Create an `app` directory and enter it.\n* Create an empty file `__init__.py`.\n* Create a `main.py` file with:\n\n```Python\nfrom fastapi import FastAPI\n\napp = FastAPI()\n\n\n@app.get(\"/\")\ndef read_root():\n    return {\"Hello\": \"World\"}\n\n\n@app.get(\"/items/{item_id}\")\ndef read_item(item_id: int, q: str | None = None):\n    return {\"item_id\": item_id, \"q\": q}\n```",
+            "source": "deployment.docker",
+            "index": 9,
+            "heading": "Create the **FastAPI** Code",
+            "start_line": 137,
+            "end_line": 158,
+            "revision": "79459189fdfac3a1c74c20ce2c464bf268de81c660bd92d866a9d74da607489a",
+            "chunk_id": "aab03569dc7b158987bc34f7",
+            "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/deployment/docker.md",
+            "title": "FastAPI in Containers - Docker"
+          },
+          "score": 3.332724094390869,
+          "dense_score": 0.4945642650127411,
+          "bm25_score": 9.530974721289796,
+          "rerank_score": 3.332724094390869
+        },
+        {
+          "chunk": {
+            "text": "### Setting the `root_path` in the FastAPI app { #setting-the-root-path-in-the-fastapi-app }\n\nAlternatively, if you don't have a way to provide a command line option like `--root-path` or equivalent, you can set the `root_path` parameter when creating your FastAPI app:\n\n{* ../../docs_src/behind_a_proxy/tutorial002_py310.py hl[3] *}\n\nPassing the `root_path` to `FastAPI` would be the equivalent of passing the `--root-path` command line option to Uvicorn or Hypercorn.",
+            "source": "advanced.behind-a-proxy",
+            "index": 11,
+            "heading": "Setting the `root_path` in the FastAPI app",
+            "start_line": 219,
+            "end_line": 226,
+            "revision": "2cb3e7376db409d0936e1da4e839436f249d72e08c7e2654ddfb3b1748a94351",
+            "chunk_id": "e301f097bcc2223e58101b40",
+            "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/advanced/behind-a-proxy.md",
+            "title": "Behind a Proxy"
+          },
+          "score": 3.159308433532715,
+          "dense_score": 0.5168712139129639,
+          "bm25_score": 4.8509919645894595,
+          "rerank_score": 3.159308433532715
+        }
+      ],
+      "citations": [],
+      "retrieved": [
+        {
+          "chunk": {
+            "text": "## Using `TestClient` { #using-testclient }\n\n/// note\n\nTo use `TestClient`, first install [`httpx`](https://www.python-httpx.org).\n\nAdd it to your project:\n\n```console\n$ uv add httpx\n```\n\n///\n\nImport `TestClient`.\n\nCreate a `TestClient` by passing your **FastAPI** application to it.\n\nCreate functions with a name that starts with `test_` (this is a standard `pytest` convention).\n\nUse the `TestClient` object the same way as you do with `httpx`.\n\nWrite simple `assert` statements with the standard Python expressions that you need to check (again, standard `pytest`).\n\n{* ../../docs_src/app_testing/tutorial001_py310.py hl[2,12,15:18] *}\n\n/// tip\n\nNotice that the testing functions are normal `def`, not `async def`.\n\nAnd the calls to the client are also normal calls, not using `await`.\n\nThis allows you to use `pytest` directly without complications.\n\n///\n\n/// note | Technical Details\n\nYou could also use `from starlette.testclient import TestClient`.\n\n**FastAPI** provides the same `starlette.testclient` as `fastapi.testclient` just as a convenience for you, the developer. But it comes directly from Starlette.\n\n///\n\n/// tip",
+            "source": "tutorial.testing",
+            "index": 1,
+            "heading": "Using `TestClient`",
+            "start_line": 9,
+            "end_line": 54,
+            "revision": "37dc11f563a570b5fb98cbe87d35f04d21db24e041e104d5d963131f1a5b1777",
+            "chunk_id": "94cfc71e43a33e363f904c35",
+            "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/tutorial/testing.md",
+            "title": "Testing"
+          },
+          "score": 7.684736251831055,
+          "dense_score": 0.5650160908699036,
+          "bm25_score": 11.103460524978072,
+          "rerank_score": 7.684736251831055
+        },
+        {
+          "chunk": {
+            "text": "from fastapi import FastAPI\nfrom fastapi.testclient import TestClient\n\napp = FastAPI()\n\n\n@app.get(\"/\")\nasync def read_main():\n    return {\"msg\": \"Hello World\"}\n\n\nclient = TestClient(app)\n\n\ndef test_read_main():\n    response = client.get(\"/\")\n    assert response.status_code == 200\n    assert response.json() == {\"msg\": \"Hello World\"}",
+            "source": "code.app_testing.tutorial001_py310",
+            "index": 0,
+            "heading": "",
+            "start_line": 1,
+            "end_line": 18,
+            "revision": "43ccda7d34b1964d4ec733ca7113e6a798b6d2e21786515cd62e3ea119993c16",
+            "chunk_id": "f278f0795011ce038ccc272b",
+            "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs_src/app_testing/tutorial001_py310.py",
+            "title": "FastAPI TestClient complete example"
+          },
+          "score": 6.2966814041137695,
+          "dense_score": 0.7039981484413147,
+          "bm25_score": 12.296638469766886,
+          "rerank_score": 6.2966814041137695
+        },
+        {
+          "chunk": {
+            "text": "# Testing { #testing }\n\nThanks to [Starlette](https://starlette.dev/testclient/), testing **FastAPI** applications is easy and enjoyable.\n\nIt is based on [HTTPX](https://www.python-httpx.org), which in turn is designed based on Requests, so it's very familiar and intuitive.\n\nWith it, you can use [pytest](https://docs.pytest.org/) directly with **FastAPI**.",
+            "source": "tutorial.testing",
+            "index": 0,
+            "heading": "Testing",
+            "start_line": 1,
+            "end_line": 8,
+            "revision": "37dc11f563a570b5fb98cbe87d35f04d21db24e041e104d5d963131f1a5b1777",
+            "chunk_id": "eda67ff7447cf495e83a9b9c",
+            "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/tutorial/testing.md",
+            "title": "Testing"
+          },
+          "score": 4.016937255859375,
+          "dense_score": 0.6003981232643127,
+          "bm25_score": 6.807796886536277,
+          "rerank_score": 4.016937255859375
+        },
+        {
+          "chunk": {
+            "text": "### Create the **FastAPI** Code { #create-the-fastapi-code }\n\n* Create an `app` directory and enter it.\n* Create an empty file `__init__.py`.\n* Create a `main.py` file with:\n\n```Python\nfrom fastapi import FastAPI\n\napp = FastAPI()\n\n\n@app.get(\"/\")\ndef read_root():\n    return {\"Hello\": \"World\"}\n\n\n@app.get(\"/items/{item_id}\")\ndef read_item(item_id: int, q: str | None = None):\n    return {\"item_id\": item_id, \"q\": q}\n```",
+            "source": "deployment.docker",
+            "index": 9,
+            "heading": "Create the **FastAPI** Code",
+            "start_line": 137,
+            "end_line": 158,
+            "revision": "79459189fdfac3a1c74c20ce2c464bf268de81c660bd92d866a9d74da607489a",
+            "chunk_id": "aab03569dc7b158987bc34f7",
+            "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/deployment/docker.md",
+            "title": "FastAPI in Containers - Docker"
+          },
+          "score": 3.332724094390869,
+          "dense_score": 0.4945642650127411,
+          "bm25_score": 9.530974721289796,
+          "rerank_score": 3.332724094390869
+        },
+        {
+          "chunk": {
+            "text": "### Setting the `root_path` in the FastAPI app { #setting-the-root-path-in-the-fastapi-app }\n\nAlternatively, if you don't have a way to provide a command line option like `--root-path` or equivalent, you can set the `root_path` parameter when creating your FastAPI app:\n\n{* ../../docs_src/behind_a_proxy/tutorial002_py310.py hl[3] *}\n\nPassing the `root_path` to `FastAPI` would be the equivalent of passing the `--root-path` command line option to Uvicorn or Hypercorn.",
+            "source": "advanced.behind-a-proxy",
+            "index": 11,
+            "heading": "Setting the `root_path` in the FastAPI app",
+            "start_line": 219,
+            "end_line": 226,
+            "revision": "2cb3e7376db409d0936e1da4e839436f249d72e08c7e2654ddfb3b1748a94351",
+            "chunk_id": "e301f097bcc2223e58101b40",
+            "source_url": "https://github.com/fastapi/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/docs/en/docs/advanced/behind-a-proxy.md",
+            "title": "Behind a Proxy"
+          },
+          "score": 3.159308433532715,
+          "dense_score": 0.5168712139129639,
+          "bm25_score": 4.8509919645894595,
+          "rerank_score": 3.159308433532715
+        }
+      ],
+      "timings": {
+        "snapshot_ms": 5.112208076752722,
+        "retrieval_ms": 26.837624958716333,
+        "rerank_ms": 1281.786625040695,
+        "total_ms": 4635.028875083663,
+        "visible_chunks": 326,
+        "candidates": 20,
+        "generation_ms": 3305.4840830154717
+      },
+      "usage": {
+        "input_tokens": 3314,
+        "output_tokens": 656,
+        "estimated": false,
+        "configured_currency_cost": null
+      },
+      "mechanical_review": {
+        "expected_status_met": false,
+        "forbidden_document_seen": [],
+        "forbidden_string_seen": false,
+        "citations_present_for_answer": true,
+        "boundary_pass": false,
+        "scope": "status and access boundaries only; not semantic answer accuracy"
+      },
+      "gold_retrieval": {
+        "evidence_recall_at_k": 1.0,
+        "any_gold_at_k": 1.0,
+        "all_gold_at_k": 1.0,
+        "mrr_at_k": 1.0
+      },
+      "elapsed_ms": 4636.540582985617,
+      "generation_diagnostics": [
+        {
+          "attempt": 1,
+          "finish_reason": "stop",
+          "input_tokens": 1471,
+          "output_tokens": 331,
+          "result": "rejected",
+          "failure_code": "INVALID_SCHEMA",
+          "language_check": {},
+          "schema_errors": [
+            {
+              "location": [
+                "claims",
+                1,
+                "evidence"
+              ],
+              "type": "too_long"
+            },
+            {
+              "location": [
+                "claims",
+                2,
+                "evidence"
+              ],
+              "type": "too_long"
+            },
+            {
+              "location": [
+                "claims",
+                3,
+                "evidence"
+              ],
+              "type": "too_long"
+            }
+          ],
+          "raw_draft": "{\"language\":\"en\",\"claims\":[{\"text\":\"To use TestClient, first install httpx, for example by adding it to your project with the command uv add httpx.\",\"evidence\":[{\"id\":3,\"span_id\":2},{\"id\":3,\"span_id\":4}]},{\"text\":\"Import TestClient from fastapi.testclient, then create a TestClient by passing your FastAPI application to it, as in client = TestClient(app).\",\"evidence\":[{\"id\":1,\"span_id\":1},{\"id\":3,\"span_id\":5},{\"id\":3,\"span_id\":6},{\"id\":1,\"span_id\":4}]},{\"text\":\"Create test functions whose names start with test_ (a standard pytest convention), use the TestClient object the same way as httpx, and write simple assert statements with standard Python expressions; these testing functions are normal def functions, not async def, and the client calls are normal calls without await.\",\"evidence\":[{\"id\":3,\"span_id\":7},{\"id\":3,\"span_id\":8},{\"id\":3,\"span_id\":9},{\"id\":3,\"span_id\":10},{\"id\":3,\"span_id\":11}]},{\"text\":\"FastAPI's testing support is based on Starlette and HTTPX, so you can use pytest directly with FastAPI, and FastAPI provides the same starlette.testclient as fastapi.testclient as a convenience.\",\"evidence\":[{\"id\":2,\"span_id\":2},{\"id\":2,\"span_id\":3},{\"id\":2,\"span_id\":4},{\"id\":3,\"span_id\":15}]}]}"
+        },
+        {
+          "attempt": 2,
+          "finish_reason": "stop",
+          "input_tokens": 1843,
+          "output_tokens": 325,
+          "result": "rejected",
+          "failure_code": "INVALID_SCHEMA",
+          "language_check": {},
+          "schema_errors": [
+            {
+              "location": [
+                "claims",
+                1,
+                "evidence"
+              ],
+              "type": "too_long"
+            },
+            {
+              "location": [
+                "claims",
+                2,
+                "evidence"
+              ],
+              "type": "too_long"
+            },
+            {
+              "location": [
+                "claims",
+                3,
+                "evidence"
+              ],
+              "type": "too_long"
+            }
+          ],
+          "raw_draft": "{\"language\":\"en\",\"claims\":[{\"text\":\"To use TestClient, first install httpx, for example by adding it to your project with the command uv add httpx.\",\"evidence\":[{\"id\":3,\"span_id\":2},{\"id\":3,\"span_id\":4}]},{\"text\":\"Import TestClient from fastapi.testclient, then create a TestClient by passing your FastAPI application to it, as in client = TestClient(app).\",\"evidence\":[{\"id\":1,\"span_id\":1},{\"id\":3,\"span_id\":5},{\"id\":3,\"span_id\":6},{\"id\":1,\"span_id\":4}]},{\"text\":\"Create test functions whose names start with test_, use the TestClient object the same way as httpx, and write simple assert statements with standard Python expressions; these testing functions are normal def functions, not async def, and the client calls are normal calls without await.\",\"evidence\":[{\"id\":3,\"span_id\":7},{\"id\":3,\"span_id\":8},{\"id\":3,\"span_id\":9},{\"id\":3,\"span_id\":10},{\"id\":3,\"span_id\":11}]},{\"text\":\"FastAPI's testing support is based on Starlette and HTTPX, so you can use pytest directly with FastAPI, and FastAPI provides the same starlette.testclient as fastapi.testclient as a convenience.\",\"evidence\":[{\"id\":2,\"span_id\":2},{\"id\":2,\"span_id\":3},{\"id\":2,\"span_id\":4},{\"id\":3,\"span_id\":15}]}]}"
+        }
+      ],
+      "human_review": {
+        "correct": null,
+        "all_claims_supported": null,
+        "notes": ""
+      },
+      "assistant_review": {
+        "correct": null,
+        "all_claims_supported": null,
+        "notes": ""
+      }
+    }
+  ],
+  "scope": "live generation; curated development set; human review separate"
+}

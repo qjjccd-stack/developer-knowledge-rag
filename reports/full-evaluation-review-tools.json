@@ -1,0 +1,13 @@
+{
+  "created_at": "2026-10-12T08:20:04.298441+00:00",
+  "frozen_answer_report_sha256": "9d9c33903e9e039d4c2185a5803d0258f62655bd3ae8bae178004bc3451558ac",
+  "scope": "local manual-review and Chinese reading tools; human grades remain unfilled",
+  "sha256": {
+    "eval/human_review.py": "8779c5836c2ad27d4a46a8bcdc8533612bde12c953b7e8bb5a2d655969f65e46",
+    "eval/review_ui.html": "73570cfc9f9199b9836762929cb0ec952a28bcc7328ee126e89be9e707640ddb",
+    "scripts/review_server.py": "f32fc3d68a0059accfdb0c61b265cae3ee66080cd1c6fa68d9247a96ecaba17a",
+    "scripts/translate_review.py": "28f6a682e9099170f8233682ae70cdc29981ae2b06d8fd605a91cd5f8b348b39",
+    "tests/test_human_review.py": "f5788368b0cd62ed8e8fb1cc7e54981a1af4dc66c4ab0fd27822e85cfa23bee9",
+    "tests/test_review_translation.py": "53875d3b942721a00db752fa581e4aa8eb3bf8dd0a7f31a08a98438655c24ca5"
+  }
+}

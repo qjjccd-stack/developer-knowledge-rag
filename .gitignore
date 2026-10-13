@@ -1,0 +1,27 @@
+.env
+.env.*
+!.env.example
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+data/models/
+data/*.sqlite3*
+.tools/
+.container-runtime/
+deploy/*.env
+.DS_Store
+backups/
+outputs/
+*.log
+*.sqlite*
+*.db
+*.db-shm
+*.db-wal
+# Upload with repository access only; keep local Actions templates off the remote.
+.github/workflows/
+!reports/
+reports/*
+!reports/*.json
+!reports/demo.jpg

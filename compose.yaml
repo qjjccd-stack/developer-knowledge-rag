@@ -1,0 +1,21 @@
+services:
+  rag:
+    build:
+      context: .
+      args:
+        BASE_IMAGE: ${RAG_BASE_IMAGE:-python:3.12-slim}
+    image: developer-knowledge-rag:local
+    ports:
+      - "127.0.0.1:8010:8010"
+    environment:
+      RAG_TOKENS_JSON: ${RAG_TOKENS_JSON:?请先配置服务端访问令牌}
+      RAG_LLM_PROVIDER: ${RAG_LLM_PROVIDER:-extractive}
+      RAG_LLM_MODEL: ${RAG_LLM_MODEL:-deepseek-chat}
+      RAG_LLM_BASE_URL: ${RAG_LLM_BASE_URL:-https://api.deepseek.com}
+      RAG_LLM_API_KEY: ${RAG_LLM_API_KEY:-}
+      RAG_MAX_CONCURRENT_QUERIES: "4"
+    volumes:
+      - rag-data:/var/lib/knowledge-rag
+    restart: unless-stopped
+volumes:
+  rag-data:
